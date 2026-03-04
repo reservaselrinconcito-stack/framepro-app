@@ -1,0 +1,30 @@
+[package]
+name = "framepro"
+version = "1.0.0"
+description = "FramePro Visual Editor"
+authors = ["FramePro Team"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = "2.0.0"
+
+[dependencies]
+tauri = { version = "2.1.1", features = [] }
+tauri-plugin-updater = "2.1.0"
+tauri-plugin-process = "2.1.0"
+tauri-plugin-shell = "2.1.0"
+tauri-plugin-dialog = "2.1.0"
+tauri-plugin-fs = "2.1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+# default enables all features
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]
+
+[profile.release]
+panic = "abort" # Strip expensive panic messages
+codegen-units = 1 # Better optimizations
+opt-level = "s" # Optimize for binary size
+lto = true # Enable link-time optimizations

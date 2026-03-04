@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FramePro — Editor web profesional</title>
+    <meta name="description"
+        content="Crea, edita y exporta documentos y estructuras web con un flujo rápido y profesional. El editor visual definitivo para Potencore." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237C5CFF'/><path d='M10 10h12v12H10z' stroke='white' stroke-width='2' fill='none'/><circle cx='16' cy='16' r='3' fill='white'/></svg>" />
+
+    <style>
+        :root {
+            --white: #ffffff;
+            --gray-50: #f8f9fc;
+            --gray-100: #f1f3f8;
+            --gray-200: #e2e6f0;
+            --gray-800: #1c2140;
+            --indigo: #4F46E5;
+            --violet: #7C5CFF;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Syne', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            transition: background 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--gray-800);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-800);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at top right, #f0f4ff, transparent);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 8vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--gray-800);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray-800);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--violet);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(124, 92, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(124, 92, 255, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--gray-200);
+            color: var(--gray-800);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+        }
+
+        .hero-image {
+            margin-top: 60px;
+            position: relative;
+            max-width: 1000px;
+            margin-inline: auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--gray-100);
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            border-radius: 24px;
+            background: var(--gray-50);
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: white;
+            border-color: var(--violet);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--gray-800);
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--gray-100);
+            text-align: center;
+            color: var(--gray-800);
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        .demo-banner {
+            background: var(--gray-900);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="container" style="display:flex; width:100%; align-items:center; justify-content:space-between;">
+            <a href="/framepro/" class="logo">
+                <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+                    <rect width="100" height="100" rx="24" fill="#7C5CFF" />
+                    <path d="M30 30h40v40H30z" stroke="white" stroke-width="6" fill="none" />
+                    <circle cx="50" cy="50" r="10" fill="white" />
+                </svg>
+                FramePro
+            </a>
+            <div class="nav-links">
+                <a href="#features">Funciones</a>
+                <a href="#workflow">Flujo</a>
+                <a href="#faq">FAQ</a>
+                <a href="/" class="btn btn-outline" style="padding: 8px 16px;">Volver al Hub</a>
+                <a href="/framepro/demo/?demo=1" class="btn btn-primary" style="padding: 8px 16px;">Ver demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="reveal">Editor web<br /><span style="color:var(--violet)">profesional</span></h1>
+            <p class="reveal">Crea, edita y exporta documentos y estructuras web con un flujo rápido. Diseñado para
+                integrarse perfectamente en el ecosistema Potencore.</p>
+            <div class="hero-actions reveal">
+                <a href="/framepro/demo/?demo=1" class="btn btn-primary">Ver demo en vivo</a>
+                <a href="#" class="btn btn-outline">Contactar ventas</a>
+            </div>
+            <div class="hero-image reveal">
+                <img src="/framepro/assets/hero.png" alt="FramePro Interface Mockup">
+            </div>
+        </div>
+    </section>
+
+    <section id="features" style="background:#fff">
+        <div class="container">
+            <h2 class="section-title">Diseñado para la velocidad</h2>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Edición en Tiempo Real</h3>
+                    <p>Mira los cambios instantáneamente mientras arrastras y sueltas componentes en el lienzo.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Tematización Avanzada</h3>
+                    <p>Cambia el estilo visual de todo tu proyecto con un solo clic usando nuestro motor de temas
+                        inteligentes.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">📦</div>
+                    <h3>Exportación Limpia</h3>
+                    <p>Genera código HTML/CSS optimizado y listo para desplegar en cualquier plataforma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" style="background:var(--gray-50)">
+        <div class="container" style="text-align:center;">
+            <h2 class="section-title">Cómo funciona</h2>
+            <p style="max-width:700px; margin: 0 auto 40px; opacity:0.7;">Tres pasos para pasar de una idea a un sitio
+                publicado.</p>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div style="font-size:40px; font-weight:800; color:var(--violet); margin-bottom:20px;">01</div>
+                    <h3>Elige una Base</h3>
+                    <p>Selecciona una plantilla o empieza desde un lienzo en blanco.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div style="font-size:40px; font-weight:800; color:var(--violet); margin-bottom:20px;">02</div>
+                    <h3>Personaliza</h3>
+                    <p>Añade secciones, cambia textos y ajusta los colores de marca.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div style="font-size:40px; font-weight:800; color:var(--violet); margin-bottom:20px;">03</div>
+                    <h3>Publica</h3>
+                    <p>Exporta tu trabajo o publícalo directamente en la nube.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container" style="max-width:800px;">
+            <h2 class="section-title">Preguntas frecuentes</h2>
+            <div style="display:flex; flex-direction:column; gap:24px;">
+                <div class="reveal">
+                    <h4 style="margin-bottom:8px;">¿Es compatible con dispositivos móviles?</h4>
+                    <p style="opacity:0.7; font-size:15px;">Sí, FramePro es totalmente responsivo y permite
+                        previsualizar tu diseño en diferentes tamaños de pantalla.</p>
+                </div>
+                <div class="reveal">
+                    <h4 style="margin-bottom:8px;">¿Puedo importar mis propios componentes?</h4>
+                    <p style="opacity:0.7; font-size:15px;">Actualmente ofrecemos una biblioteca de componentes premium,
+                        con soporte para componentes personalizados en la versión Pro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 FramePro by Potencore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Reveal animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

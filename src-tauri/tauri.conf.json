@@ -1,0 +1,57 @@
+{
+    "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+    "productName": "FramePro",
+    "version": "1.0.0",
+    "identifier": "com.framepro.app",
+    "build": {
+        "beforeDevCommand": "npm run dev",
+        "beforeBuildCommand": "npm run build",
+        "devUrl": "http://localhost:1420",
+        "frontendDist": "../dist"
+    },
+    "plugins": {
+        "updater": {
+            "active": true,
+            "endpoints": [
+                "https://framepro-updates.reservas-elrinconcito.workers.dev/latest.json"
+            ],
+            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFEODMyNTZBQjU2RDgwQTIKUldTaWdHMjFhaVdESFErcFRtN0xOb1ZMYktheStGbG9ya0dHNTkwbG9vZXNRdWtMVFY2N2lMWkkK",
+            "dialog": false
+        }
+    },
+    "app": {
+        "security": {
+            "csp": null
+        },
+        "windows": [
+            {
+                "label": "main",
+                "title": "FramePro",
+                "width": 1280,
+                "height": 720,
+                "resizable": true,
+                "fullscreen": false,
+                "devtools": true
+            }
+        ]
+    },
+    "bundle": {
+        "active": true,
+        "targets": "all",
+        "createUpdaterArtifacts": true,
+        "icon": [
+            "icons/icon.icns",
+            "icons/icon.ico",
+            "icons/icon.png"
+        ],
+        "macOS": {
+            "minimumSystemVersion": "11.0",
+            "category": "DeveloperTool"
+        },
+        "windows": {
+            "certificateThumbprint": null,
+            "digestAlgorithm": "sha256",
+            "timestampServer": ""
+        }
+    }
+}
