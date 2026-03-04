@@ -45,13 +45,11 @@
             "icons/icon.png"
         ],
         "macOS": {
-            "minimumSystemVersion": "11.0",
-            "category": "DeveloperTool"
+            "minimumSystemVersion": "11.0"
         },
         "windows": {
             "certificateThumbprint": null,
-            "digestAlgorithm": "sha256",
-            "timestampServer": ""
+            "digestAlgorithm": "sha256"
         }
     }
 }
