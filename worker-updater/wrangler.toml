@@ -1,6 +1,6 @@
-name = "framepro-updates"
+name = "webpro-updates"
 main = "index.js"
 compatibility_date = "2024-03-01"
 
 [vars]
-GITHUB_REPO = "reservaselrinconcito-stack/framepro-app"
+GITHUB_REPO = "reservaselrinconcito-stack/webpro-app"

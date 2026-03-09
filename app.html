@@ -4251,6 +4251,244 @@ const OB_EXAMPLES = {
   },
 };
 
+const TEMPLATE_PROFILES = {
+  salon:'beauty', barber:'beauty', tattoo:'beauty',
+  restaurant:'hospitality', cafe:'hospitality', bar:'hospitality', winery:'hospitality', hotel:'hospitality', catering:'hospitality',
+  clinic:'health', dentist:'health', physiotherapy:'health', optics:'health',
+  psych:'wellness', nutritionist:'wellness', yoga:'wellness',
+  veterinary:'pets', petshop:'pets',
+  gym:'fitness', crossfit:'fitness', padel:'fitness', swimclub:'fitness',
+  academy:'education', preschool:'education', music:'education', driving:'education', language:'education',
+  agency:'agency', startup:'saas', marketing:'agency', freelancer:'creative', photographer:'creative', recording:'creative', podcast:'creative',
+  consulting:'consulting', accounting:'professional', notary:'professional', hr:'professional', insurance:'professional', lawyer:'legal',
+  architect:'home', construction:'home', interiordesign:'home', plumber:'home', landscaping:'home', cleaning:'home', homestaging:'home',
+  realestate:'property', tourguide:'travel', events:'events', wedding:'events', transport:'local', autorepair:'local',
+  fashion:'retail', jewel:'retail', ecommerce:'retail',
+  ngo:'community', church:'community',
+};
+
+const PROFILE_EXAMPLES = {
+  beauty:{
+    tagline:'Imagen, detalle y experiencia premium',
+    desc:'Centro especializado en cuidado personal con tratamientos a medida, atención cercana y resultados que se notan desde la primera visita.',
+    services:'Servicio express — Puesta a punto rápida — 25€ — 30min\nServicio signature — Diagnóstico + tratamiento personalizado — 55€ — 60min\nCambio de look premium — Asesoría completa y acabado final — 95€ — 90min\nBono mensual — Seguimiento y mantenimiento — 120€ — Flexible',
+    team:'Ana Romero — Directora Creativa\nLucía Martín — Especialista en imagen\nPaula Vega — Atención y experiencia cliente',
+    feats:'Diagnóstico personalizado antes de cada servicio\nProductos premium y protocolos propios\nReserva online rápida con confirmación inmediata',
+    years:'7', clients:'2.300+',
+  },
+  hospitality:{
+    tagline:'Experiencias memorables alrededor de una mesa',
+    desc:'Espacio pensado para disfrutar con producto seleccionado, ambiente cuidado y un servicio que convierte cada visita en una recomendación.',
+    services:'Experiencia principal — Selección estrella de la casa — desde 24€ — Servicio diario\nMenú degustación — Recorrido completo por la propuesta — desde 49€ — Bajo reserva\nEvento privado — Grupos y celebraciones a medida — Consultar — Flexible\nTake away / delivery — Nuestra carta también fuera del local — desde 12€ — Diario',
+    team:'Javier Ortega — Dirección\nClara Vidal — Cocina / Producto\nMarta León — Sala y experiencia',
+    feats:'Producto de temporada y proveedores locales\nReservas online y gestión de eventos\nExperiencia cuidada de principio a fin',
+    years:'9', clients:'18.000+',
+  },
+  health:{
+    tagline:'Especialistas que inspiran confianza',
+    desc:'Centro profesional con atención personalizada, procesos claros y un enfoque orientado a resultados, seguimiento y tranquilidad del paciente.',
+    services:'Primera valoración — Diagnóstico inicial y plan recomendado — 49€ — 40min\nTratamiento especializado — Sesión personalizada según necesidad — 65€ — 60min\nRevisión y seguimiento — Ajuste del tratamiento y evolución — 39€ — 30min\nPlan integral — Seguimiento continuado con prioridad — desde 120€ — Mensual',
+    team:'Dra. Laura Serrano — Dirección clínica\nDr. Pablo Ruiz — Especialista\nMarta Gómez — Coordinación y atención al paciente',
+    feats:'Atención profesional con seguimiento real\nTecnología y protocolos actualizados\nCita online y respuesta ágil al paciente',
+    years:'11', clients:'9.500+',
+  },
+  wellness:{
+    tagline:'Bienestar con enfoque humano',
+    desc:'Acompañamos procesos de cambio y equilibrio con una metodología cercana, profesional y adaptada a cada persona.',
+    services:'Sesión inicial — Evaluación y objetivos — 50€ — 60min\nSesión de seguimiento — Trabajo práctico y evolución — 60€ — 60min\nPrograma mensual — Acompañamiento continuado — 180€ — 4 sesiones\nSesión online — Atención flexible desde cualquier lugar — 55€ — 50min',
+    team:'Irene Castro — Directora y terapeuta\nDavid Lara — Coordinación de programas\nNora Vidal — Atención al paciente',
+    feats:'Metodología clara y personalizada\nSeguimiento entre sesiones\nEspacio seguro, cercano y profesional',
+    years:'6', clients:'1.800+',
+  },
+  pets:{
+    tagline:'Cuidado experto para quienes más quieres',
+    desc:'Servicios pensados para el bienestar animal, con atención cercana, confianza y soluciones prácticas para el día a día.',
+    services:'Consulta general — Revisión y recomendaciones — 35€ — 30min\nServicio especializado — Tratamiento o asesoría concreta — 55€ — 45min\nPlan de seguimiento — Control periódico y prioridad — 95€ — Mensual\nServicio express — Gestión rápida o urgencia leve — 25€ — 20min',
+    team:'Marta Sánchez — Dirección\nCarlos Núñez — Especialista\nPaula León — Atención y seguimiento',
+    feats:'Atención cercana y trato cuidadoso\nProcesos claros para cada caso\nSeguimiento rápido y útil para propietarios',
+    years:'8', clients:'3.400+',
+  },
+  fitness:{
+    tagline:'Rendimiento, constancia y resultados',
+    desc:'Entrenamiento estructurado, coaches implicados y una experiencia diseñada para ayudarte a avanzar sin perder motivación.',
+    services:'Acceso base — Uso de instalaciones y clases clave — 39€ — Mensual\nPlan rendimiento — Entrenamiento guiado y seguimiento — 69€ — Mensual\nSesión personal — Trabajo 1 a 1 con coach — 45€ — 60min\nPack intensivo — Objetivo concreto con plan completo — 149€ — 4 semanas',
+    team:'Alex Moreno — Head Coach\nCarla Vega — Entrenadora\nDiego Paredes — Nutrición y seguimiento',
+    feats:'Programas adaptados al nivel real\nSeguimiento del progreso y hábitos\nComunidad activa que acompaña el proceso',
+    years:'5', clients:'2.900+',
+  },
+  education:{
+    tagline:'Aprender con metodo y motivacion',
+    desc:'Formacion practica, acompañamiento cercano y programas diseñados para que el alumno avance con claridad y confianza.',
+    services:'Curso introductorio — Base solida para empezar — 89€ — 4 semanas\nPrograma completo — Itinerario guiado por niveles — 290€ — 3 meses\nClases particulares — Enfoque individual y flexible — 35€ — 60min\nPack premium — Seguimiento, materiales y soporte — 490€ — Trimestre',
+    team:'Elena Ruiz — Direccion academica\nSergio Vidal — Profesor senior\nClaudia Martín — Coordinacion de alumnos',
+    feats:'Metodologia clara y progresiva\nProfesores con experiencia real\nSeguimiento continuo del aprendizaje',
+    years:'10', clients:'4.800+',
+  },
+  agency:{
+    tagline:'Crecimiento con estrategia y ejecucion',
+    desc:'Ayudamos a marcas y negocios a vender mejor con una mezcla de estrategia, creatividad y foco en resultados medibles.',
+    services:'Sprint estratégico — Diagnóstico y hoja de ruta — desde 900€ — 1 semana\nBrand + web — Identidad y presencia digital — desde 3.500€ — Proyecto\nGrowth mensual — SEO, ads y optimización — desde 1.200€ — Mes\nConsultoría ejecutiva — Sesión de alto valor — 180€ — 90min',
+    team:'Laura Blanco — Strategy Lead\nPablo Díaz — Diseño y producto\nMarta Soler — Growth & performance',
+    feats:'Estrategia alineada con negocio\nEquipo senior y ejecución rápida\nResultados y métricas desde el primer mes',
+    years:'6', clients:'140+',
+  },
+  saas:{
+    tagline:'Software pensado para escalar contigo',
+    desc:'Plataforma moderna para automatizar procesos, ahorrar tiempo y dar a tu equipo una herramienta clara, rápida y fácil de adoptar.',
+    services:'Starter — Para equipos pequeños que empiezan — 29€ — /mes\nGrowth — Automatización, integraciones y colaboración — 79€ — /mes\nScale — Seguridad, analytics y soporte priority — 199€ — /mes\nEnterprise — Adaptación, onboarding y SLAs — Consultar — Personalizado',
+    team:'Ana Torres — CEO\nJavier Medina — Product Lead\nLucía Ramos — Customer Success',
+    feats:'Implementación rápida sin fricción\nAhorro real de horas operativas\nIntegraciones y analítica para crecer mejor',
+    years:'3', clients:'1.200+',
+  },
+  creative:{
+    tagline:'Creatividad con direccion y criterio',
+    desc:'Proyectos visuales y creativos con una propuesta clara, ejecución cuidada y una identidad pensada para diferenciarte.',
+    services:'Proyecto base — Pieza principal o entrega inicial — desde 350€ — Proyecto\nPack completo — Desarrollo integral de la propuesta — desde 1.200€ — Proyecto\nSesión / producción — Trabajo intensivo con entregables — desde 450€ — Jornada\nRetainer creativo — Soporte recurrente — desde 800€ — Mes',
+    team:'Nora Vidal — Dirección creativa\nHugo Martín — Producción\nClaudia León — Edición y delivery',
+    feats:'Visión creativa con foco comercial\nProceso claro desde briefing hasta entrega\nAcabado premium y atención al detalle',
+    years:'7', clients:'220+',
+  },
+  consulting:{
+    tagline:'Decisiones mejores, equipos mas alineados',
+    desc:'Consultoría orientada a negocio para ordenar prioridades, detectar oportunidades y convertir estrategia en acción.',
+    services:'Sesión ejecutiva — Diagnóstico y próximos pasos — 220€ — 90min\nProyecto consultivo — Análisis y plan accionable — desde 2.400€ — Proyecto\nAcompañamiento mensual — Soporte de dirección — desde 950€ — Mes\nWorkshop de equipo — Dinámica y alineación interna — desde 700€ — Jornada',
+    team:'Pedro Alonso — Socio director\nMarina Vega — Consultora senior\nÁlvaro Gil — Operaciones y datos',
+    feats:'Enfoque práctico y orientado a decisiones\nDiagnóstico claro y roadmap ejecutable\nExperiencia en crecimiento y operaciones',
+    years:'12', clients:'300+',
+  },
+  professional:{
+    tagline:'Rigor, claridad y atencion profesional',
+    desc:'Servicio profesional para empresas y particulares que buscan seguridad, rapidez y un trato serio en cada gestión.',
+    services:'Consulta inicial — Valoración y resolución de dudas — 90€ — 45min\nGestión puntual — Trámite o servicio concreto — desde 150€ — Según caso\nAcompañamiento mensual — Soporte recurrente y seguimiento — desde 290€ — Mes\nServicio premium — Prioridad y atención dedicada — desde 490€ — Mes',
+    team:'Marta Pérez — Dirección\nJorge Navarro — Especialista senior\nElena Solís — Atención y coordinación',
+    feats:'Procesos claros y bien explicados\nRespuesta ágil y documentación ordenada\nRelación de confianza a largo plazo',
+    years:'14', clients:'2.100+',
+  },
+  legal:{
+    tagline:'Defensa y asesoramiento con criterio',
+    desc:'Acompañamiento legal claro, cercano y riguroso para empresas y particulares que necesitan avanzar con seguridad.',
+    services:'Primera consulta — Análisis inicial del caso — 120€ — 60min\nAsesoría puntual — Resolución y estrategia — desde 240€ — Según caso\nServicio integral — Gestión completa del expediente — desde 950€ — Proyecto\nIguala legal — Soporte recurrente para empresa — desde 390€ — Mes',
+    team:'Laura Campos — Socia directora\nAdrián Nieto — Abogado procesalista\nPatricia Serra — Coordinación jurídica',
+    feats:'Comunicación clara y sin tecnicismos innecesarios\nEnfoque estratégico en cada caso\nSeguimiento cercano hasta la resolución',
+    years:'15', clients:'1.400+',
+  },
+  home:{
+    tagline:'Diseño, ejecucion y confianza en cada proyecto',
+    desc:'Servicios para vivienda, espacios y reformas con atención al detalle, procesos claros y foco en resultado final.',
+    services:'Visita inicial — Diagnóstico y propuesta base — 90€ — 60min\nProyecto llave en mano — Diseño + ejecución — desde 2.500€ — Proyecto\nServicio puntual — Intervención concreta — desde 180€ — Según servicio\nMantenimiento / soporte — Seguimiento continuo — desde 120€ — Mes',
+    team:'David Molina — Dirección técnica\nClara Ruiz — Diseño y proyectos\nSergio Vega — Coordinación de obra',
+    feats:'Presupuestos claros y realistas\nEjecución cuidada y tiempos definidos\nAcompañamiento de principio a fin',
+    years:'9', clients:'620+',
+  },
+  property:{
+    tagline:'Propiedades presentadas para vender mejor',
+    desc:'Comercializamos espacios con una presentación profesional, asesoramiento experto y foco total en cierre y confianza.',
+    services:'Valoración inicial — Estudio de mercado y posicionamiento — 0€ — Sin compromiso\nComercialización premium — Publicación, visitas y seguimiento — desde 3% — Venta\nHome staging / mejora — Preparación del inmueble — desde 450€ — Proyecto\nGestión integral — Venta o alquiler de principio a fin — Consultar — Personalizado',
+    team:'Lucía Martín — Dirección comercial\nIván Torres — Captación y visitas\nPaula García — Marketing inmobiliario',
+    feats:'Presentación profesional que eleva conversion\nFiltrado y seguimiento de demanda\nProceso claro hasta firma y cierre',
+    years:'8', clients:'540+',
+  },
+  travel:{
+    tagline:'Experiencias para recordar',
+    desc:'Diseñamos propuestas pensadas para disfrutar, descubrir y vivir algo distinto con organización clara y atención cercana.',
+    services:'Tour esencial — Ruta guiada destacada — desde 29€ — Media jornada\nExperiencia premium — Grupo reducido y extras — desde 79€ — Jornada\nPlan privado — Itinerario a medida — desde 180€ — Personalizado\nPack empresa / grupo — Organización completa — Consultar — Evento',
+    team:'Mario Ortega — Guía principal\nSara León — Coordinación\nClaudia Vives — Atención al viajero',
+    feats:'Experiencias bien diseñadas y fáciles de reservar\nGrupos reducidos y atención cercana\nValoraciones excelentes de viajeros reales',
+    years:'6', clients:'7.500+',
+  },
+  events:{
+    tagline:'Eventos bien pensados, ejecucion impecable',
+    desc:'Creamos experiencias memorables para marcas y personas con una producción cuidada, creativa y muy bien coordinada.',
+    services:'Evento base — Diseño y coordinación inicial — desde 1.200€ — Evento\nProducción completa — Gestión integral de proveedores — desde 3.500€ — Evento\nPack premium — Dirección creativa + ejecución — desde 6.000€ — Evento\nAsesoría puntual — Revisión y apoyo estratégico — 180€ — 90min',
+    team:'Paula Romero — Dirección\nMiguel Santos — Producción\nCarla Vega — Experiencia y proveedores',
+    feats:'Creatividad con organización real\nRed de proveedores fiable y contrastada\nSeguimiento detallado antes, durante y después',
+    years:'10', clients:'260+',
+  },
+  local:{
+    tagline:'Servicio rapido, claro y profesional',
+    desc:'Negocio local orientado a resolver rápido, dar confianza y convertir cada servicio en una recomendación.',
+    services:'Servicio estándar — Resolución principal — desde 45€ — Según necesidad\nServicio urgente — Atención prioritaria — desde 75€ — Mismo día\nMantenimiento — Seguimiento o revisión — desde 29€ — Visita\nPack empresa — Servicio recurrente — Consultar — Mensual',
+    team:'David Ruiz — Responsable técnico\nMarta León — Coordinación\nIván Pérez — Atención al cliente',
+    feats:'Respuesta rápida y presupuesto claro\nEquipo profesional y resolutivo\nCobertura flexible según zona y necesidad',
+    years:'13', clients:'3.100+',
+  },
+  retail:{
+    tagline:'Producto con estilo y una experiencia cuidada',
+    desc:'Marca pensada para vender con una propuesta clara, atención impecable y una experiencia de compra que genera confianza.',
+    services:'Producto destacado — Referencia top ventas — desde 29€ — Disponible\nColección premium — Selección principal — desde 89€ — Nueva temporada\nEncargos personalizados — Servicio a medida — Consultar — Bajo pedido\nClub / beneficios — Ventajas exclusivas para clientes — Gratis — Alta inmediata',
+    team:'Elena Vidal — Dirección de marca\nTomás Campos — Producto\nNuria León — Atención al cliente',
+    feats:'Selección cuidada y propuesta diferenciada\nCompra fácil, envíos claros y soporte rápido\nMarca coherente en todos los puntos de contacto',
+    years:'5', clients:'8.700+',
+  },
+  community:{
+    tagline:'Impacto real construido en comunidad',
+    desc:'Proyecto orientado a movilizar personas, comunicar propósito y facilitar la participación con claridad y cercanía.',
+    services:'Programa principal — Actividad o iniciativa clave — Gratuito — Abierto\nParticipación activa — Inscripción y seguimiento — Gratuito — Continuo\nColaboración empresa — Acciones conjuntas con impacto — Consultar — Proyecto\nDonación / apoyo — Contribución flexible — Libre — Inmediata',
+    team:'María Torres — Dirección\nJorge Medina — Programas\nLucía Pérez — Comunidad y comunicación',
+    feats:'Propósito claro y proyectos visibles\nParticipación sencilla para la comunidad\nComunicación transparente del impacto',
+    years:'9', clients:'12.000+',
+  },
+  generic:{
+    tagline:'Propuesta clara, servicio excelente',
+    desc:'Negocio profesional con una propuesta bien definida, atención cercana y foco total en que cada cliente tenga una experiencia excelente.',
+    services:'Servicio principal — Solución destacada del negocio — desde 39€ — Flexible\nServicio premium — Valor añadido y atención ampliada — desde 79€ — Flexible\nPlan recurrente — Seguimiento o continuidad — desde 129€ — Mensual\nPropuesta personalizada — Ajustada a cada caso — Consultar — A medida',
+    team:'Ana López — Dirección\nCarlos Martín — Especialista\nLaura García — Atención al cliente',
+    feats:'Propuesta clara y fácil de entender\nAtención rápida y cercana\nExperiencia pensada para convertir',
+    years:'6', clients:'1.500+',
+  },
+};
+
+function getTemplateSeed(id){
+  return OB_EXAMPLES[id] || PROFILE_EXAMPLES[TEMPLATE_PROFILES[id]] || PROFILE_EXAMPLES.generic;
+}
+
+function parseServiceLine(line){
+  const p = line.split('—').map(s=>s.trim()).filter(Boolean);
+  if(p.length >= 4) return { t:p[0], d:p[1], price:p[2], dur:p[3], img:'', icon:'' };
+  if(p.length === 3) return { t:p[0], d:'', price:p[1], dur:p[2], img:'', icon:'' };
+  if(p.length === 2) return { t:p[0], d:p[1], price:'', dur:'', img:'', icon:'' };
+  return { t:p[0]||'Servicio', d:'', price:'', dur:'', img:'', icon:'' };
+}
+
+function parseTeamLines(text, teamColors){
+  return (text||'').split('\n').filter(Boolean).map((line,i)=>{
+    const p=line.split('—').map(s=>s.trim());
+    const n=p[0]||'Nombre';
+    return {n,r:p[1]||'Especialista',c:teamColors[i%teamColors.length],ini:n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(),img:''};
+  });
+}
+
+function parseFeatureLines(text){
+  const featIcons=['⭐','⚡','💎','🔒','🚀','💡'];
+  return (text||'').split('\n').filter(Boolean).map((line,i)=>({ icon:featIcons[i%featIcons.length], t:line, d:'' }));
+}
+
+function getProfilePricing(profile){
+  const pricing = {
+    beauty:{h2:'Elige tu experiencia',sub:'Planes y bonos pensados para repetir con comodidad.',plans:[{name:'Express',price:'29',period:'por visita',badge:'',featured:false,features:['Servicio rápido y efectivo','Reserva online','Atención profesional'],btn:'Reservar'},{name:'Signature',price:'59',period:'por visita',badge:'Más elegido',featured:true,features:['Diagnóstico personalizado','Tratamiento premium','Acabado completo'],btn:'Elegir Signature'},{name:'Bono',price:'129',period:'mensual',badge:'',featured:false,features:['Varias sesiones','Prioridad en agenda','Mejor precio por visita'],btn:'Solicitar bono'}]},
+    hospitality:{h2:'Opciones para cada ocasión',sub:'Desde experiencias rápidas hasta propuestas completas para grupos.',plans:[{name:'Esencial',price:'24',period:'por persona',badge:'',featured:false,features:['Selección principal','Reserva rápida','Experiencia cuidada'],btn:'Reservar'},{name:'Degustación',price:'49',period:'por persona',badge:'Recomendado',featured:true,features:['Recorrido completo','Producto destacado','Ideal para sorprender'],btn:'Ver menú'},{name:'Evento',price:'99',period:'desde',badge:'',featured:false,features:['Grupos y celebraciones','Configuración a medida','Atención dedicada'],btn:'Consultar'}]},
+    health:{h2:'Planes de atención',sub:'Opciones claras según tu necesidad y nivel de seguimiento.',plans:[{name:'Valoración',price:'49',period:'sesión',badge:'',featured:false,features:['Diagnóstico inicial','Orientación profesional','Siguiente paso claro'],btn:'Reservar'},{name:'Tratamiento',price:'65',period:'sesión',badge:'Más solicitado',featured:true,features:['Atención personalizada','Seguimiento del caso','Tiempo ampliado'],btn:'Pedir cita'},{name:'Plan integral',price:'120',period:'desde',badge:'',featured:false,features:['Varias sesiones','Control continuado','Prioridad en agenda'],btn:'Consultar'}]},
+    wellness:{h2:'Formas de trabajar contigo',sub:'Sesiones y programas diseñados para que avances con continuidad.',plans:[{name:'Inicial',price:'50',period:'sesión',badge:'',featured:false,features:['Primera sesión profunda','Objetivos definidos','Plan inicial'],btn:'Reservar'},{name:'Seguimiento',price:'60',period:'sesión',badge:'Más habitual',featured:true,features:['Trabajo continuado','Acompañamiento cercano','Evolución medible'],btn:'Continuar'},{name:'Programa',price:'180',period:'mensual',badge:'',featured:false,features:['4 sesiones','Soporte entre sesiones','Proceso estructurado'],btn:'Solicitar plaza'}]},
+    fitness:{h2:'Membresías y planes',sub:'Elige el nivel de acompañamiento que mejor encaja contigo.',plans:[{name:'Base',price:'39',period:'/mes',badge:'',featured:false,features:['Acceso general','Clases seleccionadas','Sin permanencia'],btn:'Empezar'},{name:'Performance',price:'69',period:'/mes',badge:'Más popular',featured:true,features:['Plan guiado','Seguimiento','Más clases y recursos'],btn:'Elegir plan'},{name:'Coaching',price:'149',period:'/mes',badge:'',featured:false,features:['Entrenamiento personal','Objetivo concreto','Atención premium'],btn:'Hablar con un coach'}]},
+    education:{h2:'Programas para avanzar',sub:'Desde una base sólida hasta itinerarios completos con seguimiento.',plans:[{name:'Intro',price:'89',period:'curso',badge:'',featured:false,features:['Contenido esencial','Acceso inmediato','Ideal para empezar'],btn:'Ver curso'},{name:'Completo',price:'290',period:'programa',badge:'Recomendado',featured:true,features:['Itinerario completo','Tutorías','Materiales incluidos'],btn:'Inscribirme'},{name:'Premium',price:'490',period:'trimestre',badge:'',featured:false,features:['Soporte ampliado','Seguimiento individual','Extras y bonus'],btn:'Solicitar info'}]},
+    agency:{h2:'Servicios y planes de crecimiento',sub:'Desde proyectos cerrados hasta acompañamiento continuo.',plans:[{name:'Sprint',price:'900',period:'desde',badge:'',featured:false,features:['Diagnóstico estratégico','Roadmap claro','Entrega rápida'],btn:'Solicitar sprint'},{name:'Growth',price:'1200',period:'/mes',badge:'Más elegido',featured:true,features:['Trabajo mensual','Creatividad + performance','Reporting y optimización'],btn:'Ver propuesta'},{name:'Partner',price:'3500',period:'desde',badge:'',featured:false,features:['Proyecto integral','Equipo senior','Escalado y soporte'],btn:'Hablar con el equipo'}]},
+    saas:{h2:'Planes para crecer sin fricción',sub:'Empieza rápido y escala cuando tu equipo lo necesite.',plans:[{name:'Starter',price:'29',period:'/mes',badge:'',featured:false,features:['Usuarios iniciales','Flujos básicos','Soporte por email'],btn:'Empezar gratis'},{name:'Growth',price:'79',period:'/mes',badge:'Más popular',featured:true,features:['Automatizaciones','Analytics','Integraciones clave'],btn:'Elegir Growth'},{name:'Scale',price:'199',period:'/mes',badge:'',featured:false,features:['Seguridad avanzada','Onboarding','Soporte prioritario'],btn:'Contactar ventas'}]},
+    creative:{h2:'Formas de trabajar juntos',sub:'Elige entre proyecto puntual, producción o colaboración continua.',plans:[{name:'Base',price:'350',period:'desde',badge:'',featured:false,features:['Entrega principal','Proceso claro','Revisión incluida'],btn:'Solicitar'},{name:'Proyecto',price:'1200',period:'desde',badge:'Recomendado',featured:true,features:['Desarrollo completo','Dirección creativa','Entrega premium'],btn:'Ver propuesta'},{name:'Retainer',price:'800',period:'/mes',badge:'',featured:false,features:['Soporte continuo','Prioridad','Horas reservadas'],btn:'Reservar hueco'}]},
+    consulting:{h2:'Modelos de colaboración',sub:'Desde sesiones puntuales hasta acompañamiento estratégico continuo.',plans:[{name:'Sesión',price:'220',period:'90 min',badge:'',featured:false,features:['Diagnóstico ejecutivo','Siguientes pasos','Valor inmediato'],btn:'Reservar'},{name:'Proyecto',price:'2400',period:'desde',badge:'Más elegido',featured:true,features:['Análisis + roadmap','Trabajo con equipo','Entregables accionables'],btn:'Solicitar proyecto'},{name:'Advisor',price:'950',period:'/mes',badge:'',featured:false,features:['Acompañamiento mensual','Prioridad','Reuniones periódicas'],btn:'Hablar ahora'}]},
+    professional:{h2:'Servicios profesionales',sub:'Opciones claras para resolver necesidades puntuales o continuas.',plans:[{name:'Consulta',price:'90',period:'sesión',badge:'',featured:false,features:['Valoración inicial','Dudas resueltas','Enfoque claro'],btn:'Reservar'},{name:'Gestión',price:'150',period:'desde',badge:'Más solicitado',featured:true,features:['Servicio concreto','Seguimiento','Documentación ordenada'],btn:'Solicitar'},{name:'Mensual',price:'290',period:'/mes',badge:'',featured:false,features:['Soporte recurrente','Atención prioritaria','Mejor coste medio'],btn:'Consultar'}]},
+    legal:{h2:'Modalidades de asesoramiento',sub:'Atención legal clara según el tipo de caso y nivel de acompañamiento.',plans:[{name:'Consulta',price:'120',period:'sesión',badge:'',featured:false,features:['Primera valoración','Orientación legal','Próximos pasos'],btn:'Reservar consulta'},{name:'Caso',price:'950',period:'desde',badge:'Más común',featured:true,features:['Gestión completa','Estrategia legal','Seguimiento del caso'],btn:'Solicitar estudio'},{name:'Iguala',price:'390',period:'/mes',badge:'',featured:false,features:['Asesoría continua','Soporte recurrente','Ideal para empresa'],btn:'Hablar con el despacho'}]},
+    home:{h2:'Servicios y proyectos',sub:'Opciones adaptadas a trabajos puntuales, reformas o acompañamiento técnico.',plans:[{name:'Visita',price:'90',period:'desde',badge:'',featured:false,features:['Diagnóstico inicial','Propuesta clara','Sin compromiso'],btn:'Reservar visita'},{name:'Proyecto',price:'2500',period:'desde',badge:'Recomendado',featured:true,features:['Diseño y ejecución','Coordinación','Seguimiento total'],btn:'Solicitar proyecto'},{name:'Mantenimiento',price:'120',period:'/mes',badge:'',featured:false,features:['Revisiones','Atención preferente','Continuidad'],btn:'Consultar'}]},
+    property:{h2:'Modelos de servicio',sub:'Desde captación y mejora del activo hasta gestión integral.',plans:[{name:'Valoración',price:'0',period:'sin compromiso',badge:'',featured:false,features:['Análisis de mercado','Estimación realista','Consejo profesional'],btn:'Solicitar'},{name:'Comercialización',price:'3',period:'% desde',badge:'Más elegido',featured:true,features:['Marketing del activo','Visitas y seguimiento','Negociación'],btn:'Ver condiciones'},{name:'Integral',price:'490',period:'desde',badge:'',featured:false,features:['Preparación del activo','Soporte completo','Servicio premium'],btn:'Hablar ahora'}]},
+    travel:{h2:'Experiencias disponibles',sub:'Escoge el formato que mejor encaja con tu plan o grupo.',plans:[{name:'Tour base',price:'29',period:'persona',badge:'',featured:false,features:['Ruta principal','Reserva sencilla','Experiencia guiada'],btn:'Reservar'},{name:'Premium',price:'79',period:'persona',badge:'Recomendado',featured:true,features:['Grupo reducido','Más duración','Extras incluidos'],btn:'Ver disponibilidad'},{name:'Privado',price:'180',period:'desde',badge:'',featured:false,features:['Itinerario a medida','Atención dedicada','Flexibilidad total'],btn:'Consultar'}]},
+    events:{h2:'Formatos de servicio',sub:'Desde apoyo estratégico hasta producción completa del evento.',plans:[{name:'Base',price:'1200',period:'desde',badge:'',featured:false,features:['Concepto y planificación','Primeros proveedores','Control general'],btn:'Solicitar info'},{name:'Full service',price:'3500',period:'desde',badge:'Más elegido',featured:true,features:['Producción integral','Coordinación total','Experiencia cuidada'],btn:'Ver propuesta'},{name:'Premium',price:'6000',period:'desde',badge:'',featured:false,features:['Dirección creativa','Equipo senior','Atención total'],btn:'Hablar ahora'}]},
+    local:{h2:'Opciones de servicio',sub:'Precios claros para atención rápida, mantenimiento o urgencia.',plans:[{name:'Estándar',price:'45',period:'desde',badge:'',featured:false,features:['Resolución principal','Presupuesto claro','Visita profesional'],btn:'Solicitar'},{name:'Urgente',price:'75',period:'desde',badge:'Más demandado',featured:true,features:['Prioridad en agenda','Atención rápida','Respuesta el mismo día'],btn:'Llamar ahora'},{name:'Empresa',price:'190',period:'/mes',badge:'',featured:false,features:['Servicio recurrente','Seguimiento','Condiciones preferentes'],btn:'Consultar'}]},
+    retail:{h2:'Propuesta comercial',sub:'Destacamos productos, colecciones y experiencias de compra con valor.',plans:[{name:'Destacado',price:'29',period:'desde',badge:'',featured:false,features:['Producto top','Compra fácil','Disponibilidad inmediata'],btn:'Ver producto'},{name:'Colección',price:'89',period:'desde',badge:'Más vendida',featured:true,features:['Selección premium','Presentación cuidada','Mejor conversión'],btn:'Descubrir'},{name:'Personalizado',price:'199',period:'desde',badge:'',featured:false,features:['Encargo a medida','Atención dedicada','Experiencia premium'],btn:'Consultar'}]},
+    community:{h2:'Formas de participar',sub:'Hazlo como miembro, colaborador o impulsando una iniciativa concreta.',plans:[{name:'Participar',price:'0',period:'libre',badge:'',featured:false,features:['Acceso abierto','Información y actividades','Entrada sencilla'],btn:'Unirme'},{name:'Colaborar',price:'15',period:'/mes',badge:'Más común',featured:true,features:['Apoyo recurrente','Impacto continuo','Comunidad activa'],btn:'Colaborar'},{name:'Impulsar',price:'50',period:'/mes',badge:'',featured:false,features:['Apoyo ampliado','Mayor impacto','Participación prioritaria'],btn:'Aportar'}]},
+    generic:{h2:'Nuestras opciones',sub:'Una oferta clara para distintos niveles de necesidad.',plans:[{name:'Base',price:'39',period:'desde',badge:'',featured:false,features:['Servicio principal','Atención clara','Buen punto de partida'],btn:'Empezar'},{name:'Pro',price:'79',period:'desde',badge:'Más elegido',featured:true,features:['Más valor','Mejor experiencia','Soporte ampliado'],btn:'Elegir Pro'},{name:'Premium',price:'129',period:'desde',badge:'',featured:false,features:['Atención prioritaria','Servicio completo','Más acompañamiento'],btn:'Consultar'}]},
+  };
+  return pricing[profile] || pricing.generic;
+}
+
 // obPreview — updates site-name live while user types in step 2, and refreshes preview if on step 3
 function obPreview(){
   const nameEl = document.getElementById('ob-name');
@@ -4281,7 +4519,7 @@ function renameSite(el){
 }
 
 function prefillObExamples(id){
-  const ex=OB_EXAMPLES[id];
+  const ex=getTemplateSeed(id);
   if(!ex||document.getElementById('ob-name').value) return; // no sobrescribir si ya hay datos
   document.getElementById('ob-tagline').value=ex.tagline||'';
   document.getElementById('ob-desc').value=ex.desc||'';
@@ -4305,22 +4543,11 @@ function getObData(){
   const years=v('ob-years')||'5';
   const clients=v('ob-clients')||'500+';
 
-  const parseSrvLine=line=>{
-    const p=line.split('—').map(s=>s.trim());
-    return {t:p[0]||'Servicio',d:p[1]||'',price:p[1]||'',dur:p[2]||'',img:'',icon:''};
-  };
-  const services=(v('ob-services')||'').split('\n').filter(Boolean).map(parseSrvLine);
+  const services=(v('ob-services')||'').split('\n').filter(Boolean).map(parseServiceLine);
 
   const teamColors=['#c97b6e','#7c3aed','#0891b2','#059669','#d97706','#e11d48'];
-  const team=(v('ob-team')||'').split('\n').filter(Boolean).map((line,i)=>{
-    const p=line.split('—').map(s=>s.trim());
-    const n=p[0]||'Nombre';
-    return {n,r:p[1]||'Especialista',c:teamColors[i%teamColors.length],ini:n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(),img:''};
-  });
-
-  const featIcons=['⭐','⚡','💎','🔒','🚀','💡'];
-  const feats=(v('ob-feats')||'').split('\n').filter(Boolean).map((line,i)=>({
-    icon:featIcons[i%featIcons.length],t:line,d:''}));
+  const team=parseTeamLines(v('ob-team'), teamColors);
+  const feats=parseFeatureLines(v('ob-feats'));
 
   return {name,tagline,desc,city,phone,email,addr,years,clients,services,team,feats};
 }
@@ -4380,6 +4607,8 @@ function applyTplWithData(){
   const data=getObData();
   const tpl=TEMPLATES.find(t=>t.id===OB.tplId);
   if(!tpl) return;
+  const profile=TEMPLATE_PROFILES[OB.tplId]||'generic';
+  const profileSeed=getTemplateSeed(OB.tplId);
   const {accent,dark,teamColors,galImgs,srvIcons}=tpl;
 
   /* helpers */
@@ -4394,6 +4623,7 @@ function applyTplWithData(){
     ecommerce:['Inicio','Productos','Novedades','Sobre nosotros','Ayuda'],
   };
   const ctaLabels={salon:'Reservar cita',barber:'Reservar',restaurant:'Reservar mesa',gym:'Empezar gratis',clinic:'Pedir cita',agency:'Ver propuesta',hotel:'Reservar ahora',ecommerce:'Ver productos'};
+  const profileCtaLabels={beauty:'Reservar cita',hospitality:'Reservar ahora',health:'Pedir cita',wellness:'Reservar sesión',pets:'Solicitar cita',fitness:'Empezar ahora',education:'Solicitar plaza',agency:'Ver propuesta',saas:'Empezar gratis',creative:'Ver portfolio',consulting:'Agendar reunión',professional:'Solicitar asesoría',legal:'Consulta inicial',home:'Pedir presupuesto',property:'Ver inmuebles',travel:'Ver experiencias',events:'Solicitar propuesta',local:'Llamar ahora',retail:'Ver colección',community:'Participar'};
   const heroTitles={
     salon:`${data.name} — Belleza que te transforma`,
     barber:`Cortes que definen tu estilo en ${data.name}`,
@@ -4403,6 +4633,28 @@ function applyTplWithData(){
     agency:`${data.name} — Ideas que generan resultados`,
     hotel:`Bienvenido a ${data.name}`,
     ecommerce:`${data.name} — Descubre nuestra colección`,
+  };
+  const profileHeroTitles={
+    beauty: nm => `${nm} — belleza y cuidado con criterio`,
+    hospitality: nm => `${nm} — una experiencia para recordar`,
+    health: nm => `${nm} — atención profesional que da confianza`,
+    wellness: nm => `${nm} — acompaña tu bienestar con calma`,
+    pets: nm => `${nm} — cuidado experto para tus mascotas`,
+    fitness: nm => `${nm} — resultados que se construyen contigo`,
+    education: nm => `${nm} — aprende mejor, avanza antes`,
+    agency: nm => `${nm} — estrategia y creatividad para crecer`,
+    saas: nm => `${nm} — software para operar mejor y escalar`,
+    creative: nm => `${nm} — creatividad con dirección`,
+    consulting: nm => `${nm} — decisiones más claras, mejor negocio`,
+    professional: nm => `${nm} — servicio profesional sin fricción`,
+    legal: nm => `${nm} — asesoramiento legal con rigor`,
+    home: nm => `${nm} — proyectos bien pensados y bien ejecutados`,
+    property: nm => `${nm} — espacios que se venden mejor`,
+    travel: nm => `${nm} — descubre algo que merezca la pena`,
+    events: nm => `${nm} — eventos que dejan huella`,
+    local: nm => `${nm} — soluciones rápidas y profesionales`,
+    retail: nm => `${nm} — producto, estilo y experiencia`,
+    community: nm => `${nm} — una comunidad con propósito`,
   };
   const ctaTitles={
     salon:`¿Lista para tu próxima cita en ${data.name}?`,
@@ -4414,6 +4666,7 @@ function applyTplWithData(){
     hotel:`Reserva tu estancia en ${data.name}`,
     ecommerce:'Ofertas exclusivas para suscriptores',
   };
+  const profileCtaTitles={beauty:nm=>`Reserva tu próxima experiencia en ${nm}`,hospitality:nm=>`Haz tu reserva en ${nm}`,health:nm=>`Pide tu cita con ${nm}`,wellness:nm=>`Da el siguiente paso con ${nm}`,pets:nm=>`Agenda una visita con ${nm}`,fitness:nm=>'Empieza hoy, no la próxima semana',education:nm=>`Solicita información sobre ${nm}`,agency:nm=>'¿Quieres resultados más sólidos?',saas:nm=>`Empieza a usar ${nm} hoy`,creative:nm=>`¿Creamos algo potente juntos?`,consulting:nm=>'Hablemos de tu próximo reto',professional:nm=>`Solicita apoyo en ${nm}`,legal:nm=>'Consulta tu caso con nosotros',home:nm=>'Pide una propuesta para tu proyecto',property:nm=>'Hablemos de tu inmueble',travel:nm=>'Reserva tu próxima experiencia',events:nm=>'Cuéntanos tu evento',local:nm=>'Solicita servicio ahora',retail:nm=>'Descubre lo más destacado',community:nm=>'Súmate a la iniciativa'};
   const ctaSubs={
     salon:'Reserva online y recibe un 10% de descuento en tu primera visita.',
     barber:'Primera cita con un 15% de descuento para nuevos clientes.',
@@ -4424,6 +4677,7 @@ function applyTplWithData(){
     hotel:'Reserva directa con desayuno incluido. Mejor precio garantizado.',
     ecommerce:'Envío gratuito en pedidos superiores a 50€. Devolución fácil.',
   };
+  const profileCtaSubs={beauty:'Reserva online en menos de un minuto y asegura tu hueco.',hospitality:'Elige fecha, reserva rápido y disfruta sin complicaciones.',health:'Primera valoración clara y atención profesional desde el primer contacto.',wellness:'Te acompañamos con un enfoque cercano, útil y profesional.',pets:'Atención rápida y seguimiento claro para cada caso.',fitness:'Empieza con un plan claro y acompañamiento real.',education:'Te ayudamos a elegir el programa que mejor encaja contigo.',agency:'Primera conversación práctica para detectar oportunidades reales.',saas:'Configura tu cuenta, invita a tu equipo y empieza en minutos.',creative:'Proyecto puntual o colaboración continua, tú eliges el formato.',consulting:'Analizamos tu situación y te proponemos próximos pasos accionables.',professional:'Explícanos tu caso y te orientamos con claridad.',legal:'Una primera conversación puede ahorrarte tiempo, riesgo y decisiones erróneas.',home:'Presupuesto claro, alcance bien definido y ejecución cuidada.',property:'Te ayudamos a presentar mejor, vender mejor y cerrar antes.',travel:'Consulta disponibilidad y encuentra la opción ideal para tu plan.',events:'Diseñamos una propuesta realista, cuidada y alineada con tu objetivo.',local:'Respuesta ágil, presupuesto claro y servicio profesional.',retail:'Compra fácil, atención rápida y una experiencia de marca coherente.',community:'Participa, colabora o impulsa el proyecto con nosotros.'};
 
   const testimonialSets={
     salon:[
@@ -4457,24 +4711,49 @@ function applyTplWithData(){
       {t:`"Sin duda la mejor opción en ${data.city}. Totalmente recomendable."`,n:'Carlos M.',r:'Nuevo cliente',c:'#059669',ini:'CM',img:''},
     ],
   };
-  const testis=testimonialSets[OB.tplId]||testimonialSets.default;
+  const profileTestimonials={
+    saas:[
+      {t:`"${data.name} nos ahorra horas cada semana y el equipo lo adoptó en días."`,n:'Marta V.',r:'COO',c:teamColors[0],ini:'MV',img:''},
+      {t:'"Pasamos de hojas sueltas a un flujo claro y medible sin complicaciones."',n:'Sergio P.',r:'Head of Ops',c:teamColors[1]||'#7c3aed',ini:'SP',img:''},
+      {t:'"El onboarding fue rápido y el impacto operativo se notó enseguida."',n:'Clara R.',r:'Founder',c:teamColors[2]||'#0891b2',ini:'CR',img:''},
+      {t:'"Por fin una herramienta que entiende cómo trabaja un equipo real."',n:'Álvaro G.',r:'CEO',c:'#059669',ini:'AG',img:''},
+    ],
+    agency:[
+      {t:`"El equipo de ${data.name} no solo ejecuta: entiende negocio y aporta criterio."`,n:'Lucía M.',r:'CMO',c:teamColors[0],ini:'LM',img:''},
+      {t:'"Ordenaron nuestra marca y mejoraron la conversión en semanas."',n:'Pablo R.',r:'Founder',c:teamColors[1]||'#7c3aed',ini:'PR',img:''},
+      {t:'"Creatividad con foco real en resultados. Eso marca la diferencia."',n:'Elena T.',r:'Brand Manager',c:teamColors[2]||'#0891b2',ini:'ET',img:''},
+      {t:'"Rápidos, claros y muy buenos aterrizando ideas complejas."',n:'Diego S.',r:'CEO',c:'#059669',ini:'DS',img:''},
+    ],
+    professional:[
+      {t:`"Nos explicaron todo con claridad y resolvieron el proceso sin fricción."`,n:'Rosa C.',r:'Clienta',c:teamColors[0],ini:'RC',img:''},
+      {t:'"Profesionalidad, orden y respuesta rápida cuando más lo necesitábamos."',n:'Javier L.',r:'Cliente empresa',c:teamColors[1]||'#7c3aed',ini:'JL',img:''},
+      {t:'"Transmiten confianza desde el primer contacto y cumplen lo que prometen."',n:'Marta N.',r:'Clienta habitual',c:teamColors[2]||'#0891b2',ini:'MN',img:''},
+      {t:`"Sin duda volveríamos a trabajar con ${data.name}."`,n:'Sergio D.',r:'Director general',c:'#059669',ini:'SD',img:''},
+    ],
+  };
+  const testis=testimonialSets[OB.tplId]||profileTestimonials[profile]||testimonialSets.default;
+
+  const seedServices = (profileSeed.services||'').split('\n').filter(Boolean).map(parseServiceLine);
+  const seedTeam = parseTeamLines(profileSeed.team||'', teamColors);
+  const seedFeats = parseFeatureLines(profileSeed.feats||'');
+  const pricingSeed = getProfilePricing(profile);
 
   /* Servicios: mezclar los del usuario con defaults si faltan */
   const srvItems = data.services.length>0
     ? data.services.slice(0,6).map((s,i)=>({...s, img:'', icon:srvIcons[i%srvIcons.length]||''}))
-    : DEFS.services.items.map((s,i)=>({...s,icon:srvIcons[i%srvIcons.length]||''}));
+    : (seedServices.length ? seedServices : DEFS.services.items).slice(0,6).map((s,i)=>({...s,icon:srvIcons[i%srvIcons.length]||''}));
 
   /* Equipo */
   const teamMembers = data.team.length>0
     ? data.team.slice(0,4).map((m,i)=>({...m,c:teamColors[i%teamColors.length]}))
-    : DEFS.team.members.map((m,i)=>({...m,c:teamColors[i%teamColors.length]}));
+    : (seedTeam.length ? seedTeam : DEFS.team.members).slice(0,4).map((m,i)=>({...m,c:teamColors[i%teamColors.length]}));
 
   /* Features */
   const featItems = data.feats.length>=3
     ? data.feats.slice(0,3).map(f=>({icon:f.icon,t:f.t,d:f.d||'Una de las razones por las que nuestros clientes nos eligen.'}))
-    : [{icon:'⭐',t:'Calidad garantizada',d:`Años de experiencia y cientos de clientes satisfechos en ${data.city} avalan cada servicio.`},
+    : (seedFeats.length>=3 ? seedFeats.slice(0,3).map(f=>({icon:f.icon,t:f.t,d:'Una razón real por la que nuestros clientes nos eligen.'})) : [{icon:'⭐',t:'Calidad garantizada',d:`Años de experiencia y cientos de clientes satisfechos en ${data.city} avalan cada servicio.`},
        {icon:'⚡',t:'Atención personalizada',d:'Cada cliente es único. Adaptamos cada servicio a tus necesidades específicas.'},
-       {icon:'💎',t:'Precio transparente',d:'Tarifas claras y sin sorpresas. Sabes exactamente lo que pagas antes de empezar.'}];
+       {icon:'💎',t:'Precio transparente',d:'Tarifas claras y sin sorpresas. Sabes exactamente lo que pagas antes de empezar.'}]);
 
   const nm=data.name;
   const heroSub=data.desc||(data.tagline?`${data.tagline}. Visítanos en ${data.city}.`:`Tu negocio de confianza en ${data.city}.`);
@@ -4484,14 +4763,14 @@ function applyTplWithData(){
 
     if(type==='header'){
       d.logo=nm; d.accent=accent;
-      d.links=navLinks[OB.tplId]||['Inicio','Servicios','Equipo','Contacto'];
-      d.btn=ctaLabels[OB.tplId]||'Contactar';
+      d.links=navLinks[OB.tplId]||({beauty:['Inicio','Servicios','Equipo','Galería','Reservar'],hospitality:['Inicio','Carta','Experiencia','Reservas','Contacto'],health:['Inicio','Servicios','Equipo','FAQ','Contacto'],wellness:['Inicio','Método','Servicios','Sobre mí','Contacto'],pets:['Inicio','Servicios','Equipo','FAQ','Contacto'],fitness:['Inicio','Planes','Clases','Equipo','Contacto'],education:['Inicio','Programas','Profesores','Precios','Contacto'],agency:['Inicio','Servicios','Casos','Equipo','Contacto'],saas:['Inicio','Producto','Precios','Recursos','Empresa'],creative:['Inicio','Portfolio','Servicios','Sobre mí','Contacto'],consulting:['Inicio','Servicios','Metodología','Equipo','Contacto'],professional:['Inicio','Servicios','Proceso','Equipo','Contacto'],legal:['Inicio','Servicios','Equipo','Casos','Contacto'],home:['Inicio','Servicios','Proyectos','Proceso','Contacto'],property:['Inicio','Propiedades','Servicios','Equipo','Contacto'],travel:['Inicio','Experiencias','Destinos','FAQ','Contacto'],events:['Inicio','Servicios','Portfolio','Equipo','Contacto'],local:['Inicio','Servicios','Urgencias','Zonas','Contacto'],retail:['Inicio','Colección','Destacados','Marca','Contacto'],community:['Inicio','Misión','Proyectos','Participa','Contacto']})[profile]||['Inicio','Servicios','Equipo','Contacto'];
+      d.btn=ctaLabels[OB.tplId]||profileCtaLabels[profile]||'Contactar';
     }
     if(type==='hero'){
-      d.h1=heroTitles[OB.tplId]||`Bienvenido a ${nm}`;
+      d.h1=heroTitles[OB.tplId]||(profileHeroTitles[profile]?profileHeroTitles[profile](nm):`Bienvenido a ${nm}`);
       d.sub=heroSub; d.eyebrow=tpl.n;
       d.accent=accent; d.bg=dark; d.overlay=.62;
-      d.btn1=ctaLabels[OB.tplId]||'Ver más';
+      d.btn1=ctaLabels[OB.tplId]||profileCtaLabels[profile]||'Ver más';
       d.btn2='Contáctanos';
       d.img=`https://images.unsplash.com/${tpl.heroImg}?w=1400&auto=format&fit=crop`;
     }
@@ -4533,10 +4812,16 @@ function applyTplWithData(){
       d.accent=accent; d.bg=dark;
     }
     if(type==='cta'){
-      d.h2=ctaTitles[OB.tplId]||`¿Trabajamos juntos?`;
-      d.sub=ctaSubs[OB.tplId]||`Contacta con nosotros hoy mismo.`;
-      d.btn=ctaLabels[OB.tplId]||'Empezar ahora';
+      d.h2=ctaTitles[OB.tplId]||(profileCtaTitles[profile]?profileCtaTitles[profile](nm):`¿Trabajamos juntos?`);
+      d.sub=ctaSubs[OB.tplId]||profileCtaSubs[profile]||`Contacta con nosotros hoy mismo.`;
+      d.btn=ctaLabels[OB.tplId]||profileCtaLabels[profile]||'Empezar ahora';
       d.bg=accent;
+    }
+    if(type==='pricing'){
+      d.h2=pricingSeed.h2;
+      d.sub=pricingSeed.sub;
+      d.accent=accent;
+      d.plans=JSON.parse(JSON.stringify(pricingSeed.plans));
     }
     if(type==='contact'){
       d.h2=`Visítanos en ${data.city}`;

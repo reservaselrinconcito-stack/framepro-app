@@ -1,7 +1,7 @@
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 
-type UpdateState = 'idle' | 'checking' | 'available' | 'downloading' | 'ready' | 'error';
+type UpdateState = 'idle' | 'checking' | 'available' | 'up-to-date' | 'downloading' | 'ready' | 'error';
 
 const isTauri = () => typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__ || (window as any).__TAURI__);
 
@@ -59,7 +59,7 @@ const createUpdateButton = () => {
   const button = document.createElement('button');
   button.className = 'tb ghost';
   button.type = 'button';
-  button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>Actualizar</span>';
+  button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>Buscar actualización</span>';
   return button;
 };
 
@@ -79,10 +79,14 @@ const mountUpdater = async () => {
   const setButton = (next: UpdateState, detail?: string) => {
     state = next;
     if (next === 'checking') {
+      button.className = 'tb ghost';
       button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>Buscando...</span>';
     } else if (next === 'available') {
       button.className = 'tb accent';
       button.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Actualizar${detail ? ` ${detail}` : ''}</span>`;
+    } else if (next === 'up-to-date') {
+      button.className = 'tb ghost';
+      button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>Buscar actualización</span>';
     } else if (next === 'downloading') {
       button.className = 'tb';
       button.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>${detail || 'Descargando...'}</span>`;
@@ -91,11 +95,11 @@ const mountUpdater = async () => {
       button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.5 9a9 9 0 0 1 14.1-3.36L23 10"/><path d="M20.5 15a9 9 0 0 1-14.1 3.36L1 14"/></svg><span>Reiniciar</span>';
     } else if (next === 'error') {
       button.className = 'tb ghost';
-      button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Retry update</span>';
+      button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Buscar actualización</span>';
       if (detail) button.title = detail;
     } else {
       button.className = 'tb ghost';
-      button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>Actualizar</span>';
+      button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v6h-6"/></svg><span>Buscar actualización</span>';
     }
   };
 
@@ -107,10 +111,10 @@ const mountUpdater = async () => {
       if (update?.available) {
         updateHandle = update;
         setButton('available', update.version ? `v${update.version}` : '');
-        if (!silent) showToast(`Nueva version disponible${update.version ? `: ${update.version}` : ''}`, 'warn');
+        showToast(`Nueva version disponible${update.version ? `: ${update.version}` : ''}. Usa "Buscar actualización" para instalarla.`, 'warn');
       } else {
         updateHandle = null;
-        setButton('idle');
+        setButton('up-to-date');
         if (!silent) showToast('Ya tienes la ultima version.', 'ok');
       }
     } catch (error) {
@@ -157,7 +161,9 @@ const mountUpdater = async () => {
     await runCheck(false);
   });
 
-  await runCheck(true);
+  setTimeout(() => {
+    void runCheck(true);
+  }, 3000);
 };
 
 if (document.readyState === 'loading') {
