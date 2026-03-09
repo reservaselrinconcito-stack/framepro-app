@@ -1,6 +1,6 @@
 [package]
 name = "webpro"
-version = "1.0.3"
+version = "1.0.4"
 description = "WebPro desktop wrapper"
 authors = ["WebPro"]
 edition = "2021"

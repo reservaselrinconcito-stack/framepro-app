@@ -54,7 +54,7 @@ Ese pipeline necesita estos secrets:
 
 El updater de la app consulta:
 
-`https://webpro-updates.potencore.workers.dev/latest.json`
+`https://webpro-updates.reservas-elrinconcito.workers.dev/latest.json`
 
 El worker de `worker-updater/index.js` lee la ultima release de GitHub y construye el manifest automaticamente.
 
