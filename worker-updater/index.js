@@ -3,7 +3,7 @@
  * Serves latest.json for Tauri updater
  */
 
-const GITHUB_REPO = "reservaselrinconcito-stack/webpro-app";
+const GITHUB_REPO = "reservaselrinconcito-stack/framepro-app";
 
 export default {
     async fetch(request, env, ctx) {

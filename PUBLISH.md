@@ -58,6 +58,6 @@ El updater de la app consulta:
 
 El worker de `worker-updater/index.js` lee la ultima release de GitHub y construye el manifest automaticamente.
 
-Antes de depender de ello en produccion, asegúrate de desplegar ese worker con el repo correcto:
+Antes de depender de ello en produccion, asegúrate de desplegar ese worker apuntando al repo real que publica las releases ahora mismo:
 
-`reservaselrinconcito-stack/webpro-app`
+`reservaselrinconcito-stack/framepro-app`
