@@ -51,22 +51,33 @@ async function handleLatest(request) {
         assets.forEach((a) => {
             const name = a.name.toLowerCase();
 
+            const ensurePlatform = (key, url) => {
+                if (!update.platforms[key]) update.platforms[key] = {};
+                if (url) update.platforms[key].url = url;
+            };
+
+            const setSignature = (key, sigAsset) => {
+                if (!update.platforms[key]) update.platforms[key] = {};
+                update.platforms[key].signature = "placeholder_will_fetch_content";
+                update.platforms[key].sigAsset = sigAsset;
+            };
+
             // macOS ARM
             if (name.includes("aarch64") && name.endsWith(".app.tar.gz")) {
-                update.platforms["darwin-aarch64"] = { url: a.browser_download_url };
+                ensurePlatform("darwin-aarch64", a.browser_download_url);
             }
             if (name.includes("aarch64") && name.endsWith(".app.tar.gz.sig")) {
-                update.platforms["darwin-aarch64"].signature = "placeholder_will_fetch_content";
-                update.platforms["darwin-aarch64"].sigAsset = a.browser_download_url;
+                setSignature("darwin-aarch64", a.browser_download_url);
             }
 
             // macOS x64
-            if (name.includes("x86_64") && name.endsWith(".app.tar.gz")) {
-                update.platforms["darwin-x86_64"] = { url: a.browser_download_url };
+            if ((name.includes("x86_64") || name.includes("x64")) && name.endsWith(".app.tar.gz")) {
+                ensurePlatform("darwin-x86_64", a.browser_download_url);
+                ensurePlatform("darwin-x86_64-app", a.browser_download_url);
             }
-            if (name.includes("x86_64") && name.endsWith(".app.tar.gz.sig")) {
-                update.platforms["darwin-x86_64"].signature = "placeholder_will_fetch_content";
-                update.platforms["darwin-x86_64"].sigAsset = a.browser_download_url;
+            if ((name.includes("x86_64") || name.includes("x64")) && name.endsWith(".app.tar.gz.sig")) {
+                setSignature("darwin-x86_64", a.browser_download_url);
+                setSignature("darwin-x86_64-app", a.browser_download_url);
             }
 
             // Windows
