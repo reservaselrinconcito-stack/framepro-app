@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
     ArrowRight,
     Blocks,
@@ -13,6 +12,7 @@ import {
     Wand2,
     Zap,
 } from 'lucide-react';
+import { isTauriApp } from '../utils/runtime';
 
 const features = [
     {
@@ -54,6 +54,9 @@ const workflow = [
 ];
 
 export const Home: React.FC = () => {
+    const demoPath = '/app.html';
+    const potenCoreUrl = isTauriApp() ? 'https://potencore.pages.dev' : 'https://potencore.pages.dev';
+
     return (
         <div className="min-h-screen bg-[#f7f5ef] text-[#201c18] selection:bg-[#f3c979] selection:text-[#201c18]">
             <div className="fixed inset-0 -z-10 overflow-hidden">
@@ -78,16 +81,16 @@ export const Home: React.FC = () => {
                         <a href="#demo" className="transition-colors hover:text-[#d4582f]">Demo</a>
                         <a href="#features" className="transition-colors hover:text-[#d4582f]">Funciones</a>
                         <a href="#workflow" className="transition-colors hover:text-[#d4582f]">Flujo</a>
-                        <a href="https://potencore.pages.dev" target="_blank" rel="noreferrer" className="transition-colors hover:text-[#d4582f]">Potencore</a>
+                        <a href={potenCoreUrl} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#d4582f]">Potencore</a>
                     </div>
 
-                    <Link
-                        to="/demo?demo=1"
+                    <a
+                        href={demoPath}
                         className="inline-flex items-center gap-2 rounded-full bg-[#201c18] px-5 py-3 text-sm font-extrabold text-[#f7f5ef] transition-all hover:-translate-y-0.5 hover:bg-[#d4582f]"
                     >
                         Abrir editor
                         <ArrowRight size={16} />
-                    </Link>
+                    </a>
                 </div>
             </nav>
 
@@ -116,13 +119,13 @@ export const Home: React.FC = () => {
                                     Ver demo embebida
                                     <Monitor size={18} />
                                 </a>
-                                <Link
-                                    to="/demo?demo=1"
+                                <a
+                                    href={demoPath}
                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[#201c18]/12 bg-white/70 px-7 py-4 text-base font-extrabold text-[#201c18] transition-all hover:-translate-y-1 hover:border-[#1a7c78]/30 hover:bg-white"
                                 >
                                     Entrar en el editor
                                     <ArrowRight size={18} />
-                                </Link>
+                                </a>
                             </div>
 
                             <div className="mt-10 grid gap-4 text-sm font-bold text-[#5c524b] sm:grid-cols-3">
@@ -205,19 +208,19 @@ export const Home: React.FC = () => {
                                         <span className="h-3 w-3 rounded-full bg-[#64d2a3]" />
                                     </div>
                                     <div className="min-w-0 flex-1 rounded-full bg-white/6 px-4 py-2 font-mono text-xs text-[#a8998d]">
-                                        /demo?demo=1
+                                        {demoPath}
                                     </div>
-                                    <Link
-                                        to="/demo?demo=1"
+                                    <a
+                                        href={demoPath}
                                         className="inline-flex items-center gap-2 text-xs font-bold text-[#f3c979] transition-colors hover:text-white"
                                     >
                                         Abrir en nueva pestaña
                                         <ArrowRight size={14} />
-                                    </Link>
+                                    </a>
                                 </div>
 
                                 <iframe
-                                    src="/demo?demo=1"
+                                    src={demoPath}
                                     title="WebPro Demo"
                                     loading="lazy"
                                     className="block h-[680px] w-full border-0 bg-white"
@@ -331,13 +334,13 @@ export const Home: React.FC = () => {
                                     Ver demo
                                     <Monitor size={18} />
                                 </a>
-                                <Link
-                                    to="/demo?demo=1"
+                                <a
+                                    href={demoPath}
                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/30 bg-white/10 px-6 py-4 text-base font-extrabold text-white transition-all hover:-translate-y-1 hover:bg-white/16"
                                 >
                                     Abrir editor
                                     <ArrowRight size={18} />
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>

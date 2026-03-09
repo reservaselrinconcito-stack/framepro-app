@@ -1,9 +1,9 @@
 /**
- * Cloudflare Worker for FramePro Updates
+ * Cloudflare Worker for WebPro Updates
  * Serves latest.json for Tauri updater
  */
 
-const GITHUB_REPO = "reservaselrinconcito-stack/framepro-app";
+const GITHUB_REPO = "reservaselrinconcito-stack/webpro-app";
 
 export default {
     async fetch(request, env, ctx) {
@@ -20,7 +20,7 @@ export default {
             return handleDownloadRedirect(platform);
         }
 
-        return new Response("FramePro Update Server", { status: 200 });
+        return new Response("WebPro Update Server", { status: 200 });
     },
 };
 
@@ -28,7 +28,7 @@ async function handleLatest(request) {
     try {
         const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/releases/latest`, {
             headers: {
-                "User-Agent": "FramePro-Updater-Worker",
+                "User-Agent": "WebPro-Updater-Worker",
                 Accept: "application/vnd.github.v3+json",
             },
         });

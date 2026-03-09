@@ -9,7 +9,10 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build",
+    "tauri:build": "tauri build --config src-tauri/tauri.local.conf.json",
+    "tauri:build:signed": "tauri build",
+    "release:mac": "npm run tauri:build",
+    "release:signed": "npm run tauri:build:signed",
     "deploy": "npm version patch --no-git-tag-version && npm run build && npx wrangler pages deploy dist --project-name webpro"
   },
   "dependencies": {

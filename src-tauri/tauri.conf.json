@@ -1,19 +1,19 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "FramePro",
-  "version": "1.0.0",
-  "identifier": "com.framepro.app",
+  "productName": "WebPro",
+  "version": "1.0.2",
+  "identifier": "com.webpro.app",
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
-    "devUrl": "http://localhost:1420",
+    "devUrl": "http://localhost:1420/app.html",
     "frontendDist": "../dist"
   },
   "plugins": {
     "updater": {
       "active": true,
       "endpoints": [
-        "https://framepro-updates.reservas-elrinconcito.workers.dev/latest.json"
+        "https://webpro-updates.potencore.workers.dev/latest.json"
       ],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJERkQ4MkYzNTVCRERBMDUKUldRRjJyMVY4NEw5dmE0RUpwRzNPRDFmakJjZzNZUEdlcHBuS3RTUjI0RGxyUTFRaDdGTHdHM2kK",
       "dialog": false
@@ -26,11 +26,15 @@
     "windows": [
       {
         "label": "main",
-        "title": "FramePro",
+        "title": "WebPro",
+        "url": "app.html",
         "width": 1280,
         "height": 720,
+        "minWidth": 960,
+        "minHeight": 640,
         "resizable": true,
         "fullscreen": false,
+        "center": true,
         "devtools": true
       }
     ]
@@ -44,6 +48,9 @@
       "icons/icon.ico",
       "icons/icon.png"
     ],
+    "publisher": "Potencore",
+    "shortDescription": "Visual web builder de escritorio",
+    "longDescription": "WebPro es una aplicacion de escritorio para crear webs con bloques reutilizables, preview live y exportacion lista para publicar.",
     "macOS": {
       "minimumSystemVersion": "11.0"
     },
