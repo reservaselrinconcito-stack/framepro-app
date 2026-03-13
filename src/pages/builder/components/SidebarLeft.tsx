@@ -7,7 +7,7 @@ import {
     Star, Send, Layers,
     ChevronRight
 } from 'lucide-react';
-import { FRAMEPRO_TEMPLATES, FrameProTemplate } from '../framepro/templates';
+import { WEBPRO_TEMPLATES, WebProTemplate } from '../webpro/templates';
 import { SiteConfigV1 } from '@/modules/webBuilder/types';
 
 // ─── Block Catalog ─────────────────────────────────────────────────────────────
@@ -145,7 +145,7 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({ onAddBlock, onApplyTem
                             Carga una plantilla completa. Reemplaza el contenido actual.
                         </p>
                     </div>
-                    {FRAMEPRO_TEMPLATES.map(template => (
+                    {WEBPRO_TEMPLATES.map(template => (
                         <TemplateCard
                             key={template.id}
                             template={template}
@@ -160,7 +160,7 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({ onAddBlock, onApplyTem
 
 // ─── Template Card ─────────────────────────────────────────────────────────────
 
-const TemplateCard: React.FC<{ template: FrameProTemplate; onApply: () => void }> = ({ template, onApply }) => {
+const TemplateCard: React.FC<{ template: WebProTemplate; onApply: () => void }> = ({ template, onApply }) => {
     return (
         <div
             className="group relative flex flex-col bg-white border border-slate-100 rounded-2xl p-3.5 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer overflow-hidden"

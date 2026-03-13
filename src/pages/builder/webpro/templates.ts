@@ -1,14 +1,14 @@
 /**
- * src/pages/builder/framepro/templates.ts
+ * src/pages/builder/webpro/templates.ts
  *
- * 10 plantillas completas FramePro.
+ * 10 plantillas completas WebPro.
  * Cada plantilla tiene:
  *  - Metadatos (id, name, category, description, emoji)
  *  - Tema completo (colores + tipografías)
  *  - Bloques precargados con datos reales de ejemplo
  *
  * Para añadir una nueva plantilla:
- *  1. Añadir entrada a FRAMEPRO_TEMPLATES
+ *  1. Añadir entrada a WEBPRO_TEMPLATES
  *  2. No cambiar nada más en el core
  */
 
@@ -34,7 +34,7 @@ function block(type: string, variant: string, data: Record<string, any>): BlockI
 
 // ─── Template Type ─────────────────────────────────────────────────────────────
 
-export interface FrameProTemplate {
+export interface WebProTemplate {
     id: string;
     name: string;
     emoji: string;
@@ -129,7 +129,7 @@ const THEME_ORANGE = {
 
 // ─── 10 Full Templates ─────────────────────────────────────────────────────────
 
-export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
+export const WEBPRO_TEMPLATES: WebProTemplate[] = [
 
     // ─── 1. SaaS Landing ──────────────────────────────────────────────────────
     {
@@ -140,7 +140,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Convierte visitantes en clientes. Hero potente, features, pricing y CTA final.',
         previewColor: '#4f46e5',
         tags: ['saas', 'startup', 'tech', 'conversión'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.9,
         downloads: 3241,
         isFree: true,
@@ -188,7 +188,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Presencia institucional sólida. Ideal para empresas B2B y servicios profesionales.',
         previewColor: '#0f172a',
         tags: ['corporativo', 'b2b', 'empresa', 'profesional'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.8,
         downloads: 2180,
         isFree: true,
@@ -233,7 +233,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Para agencias y propiedades. Galería visual, disponibilidad y formulario de contacto.',
         previewColor: '#059669',
         tags: ['inmobiliaria', 'proptech', 'vivienda', 'propiedades'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.7,
         downloads: 1876,
         isFree: true,
@@ -277,7 +277,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Presencia perfecta para restaurantes. Menú, galería, reservas y ubicación.',
         previewColor: '#d97706',
         tags: ['restaurante', 'food', 'hostelería', 'menú'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.9,
         downloads: 2950,
         isFree: true,
@@ -321,7 +321,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Web perfecta para barberías, peluquerías y salones de belleza.',
         previewColor: '#e11d48',
         tags: ['barbería', 'peluquería', 'belleza', 'servicios'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.6,
         downloads: 1340,
         isFree: true,
@@ -365,7 +365,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Para creativos, diseñadores y fotógrafos. Muestra tu trabajo al mundo.',
         previewColor: '#7c3aed',
         tags: ['portfolio', 'diseñador', 'freelance', 'creativo'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.8,
         downloads: 3780,
         isFree: false,
@@ -410,7 +410,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Landing de evento, congreso o festival. Programa, ponentes y registro.',
         previewColor: '#a78bfa',
         tags: ['evento', 'conferencia', 'concierto', 'festival'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.7,
         downloads: 1120,
         isFree: false,
@@ -454,7 +454,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Para agencias de marketing, diseño y desarrollo. Servicios, casos de éxito y contacto.',
         previewColor: '#57534e',
         tags: ['agencia', 'marketing', 'diseño', 'digital'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.9,
         downloads: 4200,
         isFree: false,
@@ -500,7 +500,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Landing de tienda online. Productos destacados, beneficios y carrito simplificado.',
         previewColor: '#0891b2',
         tags: ['ecommerce', 'tienda', 'productos', 'online'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.8,
         downloads: 3100,
         isFree: false,
@@ -545,7 +545,7 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
         description: 'Landing para apps móviles. Conversión hacia App Store y Google Play.',
         previewColor: '#ea580c',
         tags: ['app', 'móvil', 'producto digital', 'descarga'],
-        author: 'FramePro Team',
+        author: 'WebPro Team',
         rating: 4.7,
         downloads: 2400,
         isFree: true,
@@ -583,13 +583,13 @@ export const FRAMEPRO_TEMPLATES: FrameProTemplate[] = [
 
 // ─── Helper to get a template by id ───────────────────────────────────────────
 
-export function getFrameProTemplate(id: string): FrameProTemplate | undefined {
-    return FRAMEPRO_TEMPLATES.find(t => t.id === id);
+export function getWebProTemplate(id: string): WebProTemplate | undefined {
+    return WEBPRO_TEMPLATES.find(t => t.id === id);
 }
 
 // ─── Clone a template config with fresh block IDs ─────────────────────────────
 
-export function cloneTemplateConfig(template: FrameProTemplate, slug: string, brandName: string): SiteConfigV1 {
+export function cloneTemplateConfig(template: WebProTemplate, slug: string, brandName: string): SiteConfigV1 {
     const fresh = JSON.parse(JSON.stringify(template.config)) as SiteConfigV1;
     fresh.slug = slug;
     fresh.globalData.brandName = brandName;

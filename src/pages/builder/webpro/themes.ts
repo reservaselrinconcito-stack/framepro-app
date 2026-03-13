@@ -1,14 +1,14 @@
 /**
- * src/pages/builder/framepro/themes.ts
+ * src/pages/builder/webpro/themes.ts
  *
- * Sistema global de temas FramePro.
+ * Sistema global de temas WebPro.
  * Cada tema define colores + tipografías + radio + espaciados.
  * Cambiar tema → actualiza TODO el sitio instantáneamente.
  */
 
 import { DesignTokens } from '@/modules/webBuilder/types';
 
-export interface FrameProTheme {
+export interface WebProTheme {
     id: string;
     name: string;
     emoji: string;
@@ -16,7 +16,7 @@ export interface FrameProTheme {
     tokens: DesignTokens;
 }
 
-export const FRAMEPRO_THEMES: FrameProTheme[] = [
+export const WEBPRO_THEMES: WebProTheme[] = [
     {
         id: 'indigo',
         name: 'Indigo Pro',
@@ -139,6 +139,6 @@ export const FRAMEPRO_THEMES: FrameProTheme[] = [
     },
 ];
 
-export function getThemeById(id: string): FrameProTheme | undefined {
-    return FRAMEPRO_THEMES.find(t => t.id === id);
+export function getThemeById(id: string): WebProTheme | undefined {
+    return WEBPRO_THEMES.find(t => t.id === id);
 }

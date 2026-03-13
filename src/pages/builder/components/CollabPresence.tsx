@@ -1,5 +1,5 @@
 /**
- * CollabPresence.tsx — FramePro Collaboration UI
+ * CollabPresence.tsx — WebPro Collaboration UI
  *
  * Muestra quién está editando en tiempo real:
  *   - Avatares apilados en el toolbar
@@ -13,7 +13,7 @@ import {
     Users, Wifi, WifiOff, Copy, Check,
     Link, X, Circle, UserPlus
 } from 'lucide-react';
-import { CollabSession, CollabUser, createCollabSession } from '../framepro/collaboration';
+import { CollabSession, CollabUser, createCollabSession } from '../webpro/collaboration';
 import { SiteConfigV1 } from '@/modules/webBuilder/types';
 
 // ─── Avatar ────────────────────────────────────────────────────────────────────

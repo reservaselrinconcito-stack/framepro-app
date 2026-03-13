@@ -1,5 +1,5 @@
 /**
- * src/pages/builder/framepro/preview.ts — FramePro Real-Time Preview
+ * src/pages/builder/webpro/preview.ts — WebPro Real-Time Preview
  *
  * Abre una nueva pestaña con preview en vivo del sitio.
  * Usa postMessage para sincronizar cambios del editor en tiempo real,
@@ -25,11 +25,11 @@ export interface PreviewHandle {
 }
 
 // ─── postMessage protocol ───────────────────────────────────────────────────────
-// Editor → Preview:  { type: 'FRAMEPRO_UPDATE', html: string, scrollY: number }
-// Preview → Editor:  { type: 'FRAMEPRO_READY' }  (on load)
+// Editor → Preview:  { type: 'WEBPRO_UPDATE', html: string, scrollY: number }
+// Preview → Editor:  { type: 'WEBPRO_READY' }  (on load)
 
-const MSG_UPDATE = 'FRAMEPRO_UPDATE';
-const MSG_READY  = 'FRAMEPRO_READY';
+const MSG_UPDATE = 'WEBPRO_UPDATE';
+const MSG_READY  = 'WEBPRO_READY';
 
 // ─── Preview shell HTML ─────────────────────────────────────────────────────────
 // Este HTML se carga en la nueva pestaña. Contiene un <iframe> que recibe
@@ -41,7 +41,7 @@ function buildShellHtml(): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FramePro Preview ⚡</title>
+  <title>WebPro Preview ⚡</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; background: #0f172a; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -165,7 +165,7 @@ function buildShellHtml(): string {
   <div id="toolbar">
     <div class="toolbar-badge">
       <div class="live-dot"></div>
-      FramePro Preview
+      WebPro Preview
     </div>
     <div class="toolbar-url" id="url-bar">localhost:5173 · vista previa en vivo</div>
     <span class="toolbar-hint">✏️ Los cambios del editor se reflejan aquí al instante</span>
@@ -194,25 +194,28 @@ function buildShellHtml(): string {
 
     function writeHtml(html) {
       // Preserve scroll position via script injected into the html
-      const withScroll = html.replace('</body>', \`
+      const withScroll = html.replace('</head>', [
+        '<style>',
+        'html, body {',
+        'min-height: 100%;',
+        'overflow-x: hidden !important;',
+        'overflow-y: auto !important;',
+        '}',
+        '</style>',
+        '</head>'
+      ].join('')).replace('</body>', \`
         <script>
           window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'FRAMEPRO_SET_SCROLL') {
+            if (e.data && e.data.type === 'WEBPRO_SET_SCROLL') {
               window.scrollTo(0, e.data.y);
             }
           });
         <\\/script>
       </body>\`);
-
-      const blob = new Blob([withScroll], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const oldUrl = frame.src;
-      frame.src = url;
+      frame.srcdoc = withScroll;
       frame.onload = () => {
         // Restore scroll
-        frame.contentWindow?.postMessage({ type: 'FRAMEPRO_SET_SCROLL', y: lastScrollY }, '*');
-        setTimeout(() => URL.revokeObjectURL(url), 2000);
-        if (oldUrl) setTimeout(() => URL.revokeObjectURL(oldUrl), 100);
+        frame.contentWindow?.postMessage({ type: 'WEBPRO_SET_SCROLL', y: lastScrollY }, '*');
       };
     }
 
@@ -221,7 +224,7 @@ function buildShellHtml(): string {
       if (!e.data || e.data.type !== '${MSG_UPDATE}') return;
 
       const { html, scrollY } = e.data;
-      lastScrollY = scrollY ?? lastScrollY;
+      lastScrollY = scrollY ?? frame.contentWindow?.scrollY ?? lastScrollY;
 
       // First message: hide loading
       if (loading && !loading.classList.contains('hidden')) {
@@ -261,7 +264,7 @@ export function openPreviewWindow(config: SiteConfigV1): PreviewHandle {
 
   if (!win) {
     // Popup blocked
-    console.warn('[FramePro Preview] Ventana bloqueada. Permite popups para esta página.');
+    console.warn('[WebPro Preview] Ventana bloqueada. Permite popups para esta página.');
     URL.revokeObjectURL(shellUrl);
     // Return a no-op handle
     return {

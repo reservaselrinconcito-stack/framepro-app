@@ -1,5 +1,5 @@
 /**
- * ABTestManager.tsx — FramePro A/B Testing UI
+ * ABTestManager.tsx — WebPro A/B Testing UI
  *
  * Panel para crear, monitorizar y resolver tests A/B de bloques.
  * Accesible desde el inspector cuando un bloque está seleccionado.
@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, FlaskConical, TrendingUp, Trophy, PauseCircle, PlayCircle, Trash2, Plus, ChevronDown, ChevronUp, AlertCircle, CheckCircle2 } from 'lucide-react';
-import { ABTest, ABTestResult, abTesting } from '../framepro/ab-testing';
+import { ABTest, ABTestResult, abTesting } from '../webpro/ab-testing';
 import { BlockInstance } from '@/modules/webBuilder/types';
 
 // ─── Confidence badge ──────────────────────────────────────────────────────────

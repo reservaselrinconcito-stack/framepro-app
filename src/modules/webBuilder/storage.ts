@@ -11,19 +11,19 @@ export interface StorageAdapter {
 export const WebDemoStorageAdapter: StorageAdapter = {
     isAvailable: () => true,
     save: async (key, data) => {
-        localStorage.setItem(`framepro_demo__${key}`, JSON.stringify(data));
+        localStorage.setItem(`webpro_demo__${key}`, JSON.stringify(data));
     },
     load: async (key) => {
-        const raw = localStorage.getItem(`framepro_demo__${key}`);
+        const raw = localStorage.getItem(`webpro_demo__${key}`);
         return raw ? JSON.parse(raw) : null;
     },
     list: async () => {
         return Object.keys(localStorage)
-            .filter(k => k.startsWith('framepro_demo__'))
-            .map(k => k.replace('framepro_demo__', ''));
+            .filter(k => k.startsWith('webpro_demo__'))
+            .map(k => k.replace('webpro_demo__', ''));
     },
     remove: async (key) => {
-        localStorage.removeItem(`framepro_demo__${key}`);
+        localStorage.removeItem(`webpro_demo__${key}`);
     }
 };
 

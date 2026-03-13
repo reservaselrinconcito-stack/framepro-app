@@ -40,7 +40,7 @@ export const BlockRegistry: Record<string, BlockComponent> = {
     ApartmentsGrid,
     AvailabilityCalendar,
 
-    // Real FramePro blocks
+    // Real WebPro blocks
     Stats,
     Team,
     LogoCloud,

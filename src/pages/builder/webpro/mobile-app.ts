@@ -1,7 +1,7 @@
 /**
- * mobile-app.ts — FramePro Mobile App Generator
+ * mobile-app.ts — WebPro Mobile App Generator
  *
- * Convierte cualquier sitio FramePro en una app móvil publicable
+ * Convierte cualquier sitio WebPro en una app móvil publicable
  * en App Store y Google Play usando Capacitor.js (wrapper nativo).
  *
  * Tres niveles:
@@ -84,7 +84,7 @@ function generateManifest(cfg: AppConfig, siteConfig: SiteConfigV1): string {
 // ─── Service Worker ────────────────────────────────────────────────────────────
 
 function generateServiceWorker(cfg: AppConfig): string {
-  return `/* FramePro Service Worker — generated for ${cfg.appName} */
+  return `/* WebPro Service Worker — generated for ${cfg.appName} */
 const CACHE_NAME = '${cfg.appId}-v${cfg.buildNumber}';
 const OFFLINE_URL = '/offline.html';
 
@@ -256,7 +256,7 @@ function generateOfflinePage(cfg: AppConfig): string {
 function generateReadme(cfg: AppConfig): string {
   return `# ${cfg.appName} — Guía de App Móvil
 
-Generado por **FramePro Mobile Generator** el ${new Date().toLocaleDateString('es')}.
+Generado por **WebPro Mobile Generator** el ${new Date().toLocaleDateString('es')}.
 
 ## Estructura de archivos
 
@@ -340,7 +340,7 @@ ${cfg.enableGeolocation ? '- ✅ Geolocalización' : ''}
 ## Soporte
 
 Documentación de Capacitor: https://capacitorjs.com/docs
-FramePro: https://framepro.app
+WebPro: https://webpro.app
 `;
 }
 

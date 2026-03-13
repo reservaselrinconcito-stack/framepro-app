@@ -1,5 +1,5 @@
 /**
- * headless-cms.ts — FramePro Headless CMS
+ * headless-cms.ts — WebPro Headless CMS
  *
  * CMS integrado que permite gestionar contenido dinámico (blog, productos,
  * equipo, FAQs, etc.) y exponerlo via API REST embebida o JSON estático.
@@ -299,7 +299,7 @@ export const cms = {
         const collections = this.getCollections(siteSlug);
         const data = this.exportJson(siteSlug);
         return `/**
- * FramePro CMS API Handler
+ * WebPro CMS API Handler
  * Deploy as: Vercel Edge Function / Cloudflare Worker / Express route
  *
  * Routes:

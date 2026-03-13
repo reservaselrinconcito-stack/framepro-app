@@ -1,5 +1,5 @@
 /**
- * AIContentGenerator.tsx — FramePro AI Content
+ * AIContentGenerator.tsx — WebPro AI Content
  *
  * Panel que permite generar contenido automático para cada bloque
  * usando Claude vía la API de Anthropic.

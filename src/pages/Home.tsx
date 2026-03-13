@@ -10,7 +10,6 @@ import {
     Monitor,
     Sparkles,
     Wand2,
-    Zap,
 } from 'lucide-react';
 import { isTauriApp } from '../utils/runtime';
 
@@ -54,7 +53,8 @@ const workflow = [
 ];
 
 export const Home: React.FC = () => {
-    const demoPath = '/app.html';
+    const demoPath = '/demo/';
+    const downloadPath = '/download/';
     const potenCoreUrl = isTauriApp() ? 'https://potencore.pages.dev' : 'https://potencore.pages.dev';
 
     return (
@@ -68,11 +68,9 @@ export const Home: React.FC = () => {
             <nav className="sticky top-0 z-50 border-b border-[#201c18]/10 bg-[#f7f5ef]/85 backdrop-blur-xl">
                 <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
                     <a href="#top" className="flex items-center gap-3">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#f08140,#d4582f)] text-white shadow-[0_14px_34px_rgba(212,88,47,0.24)]">
-                            <Zap size={20} />
-                        </div>
+                        <img src="/brand/icon.svg" alt="" className="h-11 w-11" />
                         <div>
-                            <div className="font-['Syne'] text-lg font-extrabold tracking-tight">WebPro</div>
+                            <img src="/brand/wordmark.png" alt="WebPro" className="h-7 w-auto" />
                             <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#7f7166]">Visual Web Builder</div>
                         </div>
                     </a>
@@ -85,10 +83,10 @@ export const Home: React.FC = () => {
                     </div>
 
                     <a
-                        href={demoPath}
+                        href={downloadPath}
                         className="inline-flex items-center gap-2 rounded-full bg-[#201c18] px-5 py-3 text-sm font-extrabold text-[#f7f5ef] transition-all hover:-translate-y-0.5 hover:bg-[#d4582f]"
                     >
-                        Abrir editor
+                        Descargar app
                         <ArrowRight size={16} />
                     </a>
                 </div>
@@ -111,19 +109,26 @@ export const Home: React.FC = () => {
                                 WebPro aterriza con una landing nueva, mas clara y mas vendible: enseña el producto en vivo, deja tocar el editor desde el primer scroll y mantiene la energia de un builder serio dentro del ecosistema Potencore.
                             </p>
 
-                            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                                 <a
-                                    href="#demo"
+                                    href={demoPath}
                                     className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#d4582f] px-7 py-4 text-base font-extrabold text-white shadow-[0_20px_50px_rgba(212,88,47,0.24)] transition-all hover:-translate-y-1 hover:bg-[#bd4a25]"
                                 >
-                                    Ver demo embebida
+                                    Probar demo
                                     <Monitor size={18} />
                                 </a>
                                 <a
-                                    href={demoPath}
+                                    href="#features"
                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[#201c18]/12 bg-white/70 px-7 py-4 text-base font-extrabold text-[#201c18] transition-all hover:-translate-y-1 hover:border-[#1a7c78]/30 hover:bg-white"
                                 >
-                                    Entrar en el editor
+                                    Ver producto
+                                    <Blocks size={18} />
+                                </a>
+                                <a
+                                    href={downloadPath}
+                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[#201c18]/12 bg-white/70 px-7 py-4 text-base font-extrabold text-[#201c18] transition-all hover:-translate-y-1 hover:border-[#1a7c78]/30 hover:bg-white"
+                                >
+                                    Descargar app
                                     <ArrowRight size={18} />
                                 </a>
                             </div>
@@ -155,7 +160,7 @@ export const Home: React.FC = () => {
                                                 <span className="h-3 w-3 rounded-full bg-[#64d2a3]" />
                                             </div>
                                             <div className="rounded-full bg-white/6 px-4 py-2 font-mono text-[11px] text-[#b7aca1]">
-                                                webpro-app.pages.dev/demo
+                                        webpro-app.pages.dev/demo/
                                             </div>
                                         </div>
                                         <div className="hidden items-center gap-2 rounded-full border border-[#f3c979]/20 bg-[#f3c979]/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#f3c979] sm:flex">
@@ -211,9 +216,9 @@ export const Home: React.FC = () => {
                                         {demoPath}
                                     </div>
                                     <a
-                                        href={demoPath}
-                                        className="inline-flex items-center gap-2 text-xs font-bold text-[#f3c979] transition-colors hover:text-white"
-                                    >
+                                    href={demoPath}
+                                    className="inline-flex items-center gap-2 text-xs font-bold text-[#f3c979] transition-colors hover:text-white"
+                                >
                                         Abrir en nueva pestaña
                                         <ArrowRight size={14} />
                                     </a>
@@ -328,17 +333,17 @@ export const Home: React.FC = () => {
 
                             <div className="flex flex-col gap-4 sm:flex-row">
                                 <a
-                                    href="#demo"
+                                    href={demoPath}
                                     className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-extrabold text-[#201c18] transition-all hover:-translate-y-1"
                                 >
-                                    Ver demo
+                                    Probar demo
                                     <Monitor size={18} />
                                 </a>
                                 <a
-                                    href={demoPath}
+                                    href={downloadPath}
                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/30 bg-white/10 px-6 py-4 text-base font-extrabold text-white transition-all hover:-translate-y-1 hover:bg-white/16"
                                 >
-                                    Abrir editor
+                                    Descargar app
                                     <ArrowRight size={18} />
                                 </a>
                             </div>

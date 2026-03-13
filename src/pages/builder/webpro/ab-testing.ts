@@ -1,5 +1,5 @@
 /**
- * ab-testing.ts — FramePro A/B Testing
+ * ab-testing.ts — WebPro A/B Testing
  *
  * Permite probar variantes de bloques individuales (Hero A vs Hero B,
  * CTA rojo vs CTA verde, etc.) y medir cuál convierte mejor.

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, Monitor, Palmtree, Sparkles, Layout, Download } from 'lucide-react';
+import { Monitor, Palmtree, Sparkles, Layout, Download, Zap } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
     return (
@@ -8,15 +8,13 @@ const LandingPage: React.FC = () => {
             {/* Nav */}
             <nav className="fixed top-0 w-full h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 flex items-center justify-between px-8">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center">
-                        <Zap size={20} className="text-white fill-white" />
-                    </div>
-                    <span className="text-xl font-black text-slate-900 tracking-tight">FramePro</span>
+                    <img src="/brand/icon.svg" alt="" className="w-10 h-10" />
+                    <img src="/brand/wordmark.png" alt="WebPro" className="h-6 w-auto" />
                 </div>
                 <div className="flex items-center gap-8 text-sm font-bold text-slate-500">
                     <a href="#features" className="hover:text-indigo-600 transition-colors">Funciones</a>
                     <a href="#workflow" className="hover:text-indigo-600 transition-colors">Flujo</a>
-                    <Link to="/demo/" className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 flex items-center gap-2">
+                    <Link to="/demo" className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 flex items-center gap-2">
                         Abrir Demo <Sparkles size={16} />
                     </Link>
                 </div>
@@ -33,7 +31,7 @@ const LandingPage: React.FC = () => {
                         Crea, edita y exporta estructuras web con un flujo rápido. Diseñado para integrarse perfectamente en el ecosistema Potencore.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link to="/demo/?demo=1" className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center justify-center gap-3">
+                        <Link to="/demo?demo=1" className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center justify-center gap-3">
                             Ver demo en vivo <Monitor size={20} />
                         </Link>
                         <button className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-lg hover:border-indigo-300 hover:bg-slate-50 transition-all flex items-center justify-center gap-3">
@@ -48,7 +46,7 @@ const LandingPage: React.FC = () => {
                             <div className="w-3 h-3 rounded-full bg-amber-400" />
                             <div className="w-3 h-3 rounded-full bg-emerald-400" />
                         </div>
-                        <img src="/assets/hero.png" alt="FramePro Dashboard" className="w-full aspect-video object-cover" />
+                        <img src="/assets/hero.png" alt="WebPro Dashboard" className="w-full aspect-video object-cover" />
                     </div>
                 </div>
             </section>
@@ -77,7 +75,7 @@ const LandingPage: React.FC = () => {
 
             {/* Footer */}
             <footer className="py-20 border-t border-slate-100 text-center text-slate-400 text-sm font-bold tracking-tight">
-                <p>© 2026 FramePro by Potencore. Todos los derechos reservados.</p>
+                <p>© 2026 WebPro by Potencore. Todos los derechos reservados.</p>
             </footer>
         </div>
     );

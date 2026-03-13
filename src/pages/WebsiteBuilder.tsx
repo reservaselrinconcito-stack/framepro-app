@@ -1,7 +1,7 @@
 /**
- * src/pages/WebsiteBuilder.tsx — FramePro Editor v1
+ * src/pages/WebsiteBuilder.tsx — WebPro Editor v1
  *
- * Evolución del editor Ferrari al producto FramePro.
+ * Evolución del editor Ferrari al producto WebPro.
  *
  * Nuevo en v1:
  *  ─ Demo mode: funciona sin backend (localStorage)
@@ -12,7 +12,7 @@
  *  ─ 4 nuevos bloques: Stats, Team, LogoCloud, NewsletterSignup
  *  ─ SidebarLeft con grid 2 cols + categoria pills
  *  ─ "Crear desde plantilla" en dashboard
- *  ─ Modo FramePro independiente (sin RentikPro)
+ *  ─ Modo WebPro independiente (sin RentikPro)
  *
  * Mantiene:
  *  ─ ErrorBoundary
@@ -30,10 +30,10 @@ import {
     Undo2, Redo2, Save, CloudIcon,
     AlertTriangle, RefreshCw, CheckCircle2,
     Loader2, ChevronLeft, Download, Eye,
-    Palette, Zap, X, Play, Globe,
+    Palette, X, Play, Globe,
     Plus, FolderOpen, Trash2, ExternalLink,
     Sparkles, Users, BarChart2, FlaskConical, Database,
-    Mail
+    Mail, Zap
 } from 'lucide-react';
 
 import { APP_VERSION } from '../version';
@@ -53,25 +53,26 @@ import { PageBar } from './builder/components/PageBar';
 // ─── Import sub-components ──────────────────────────────────────────────────
 import { Marketplace } from './builder/components/Marketplace'; // Corregir import si se movió o renombró
 import { CollabPresence } from './builder/components/CollabPresence';
-import { stripeClient } from './builder/framepro/stripe';
+import { stripeClient } from './builder/webpro/stripe';
 import { AnalyticsDashboard } from './builder/components/AnalyticsDashboard';
 import { ABTestManager } from './builder/components/ABTestManager';
 import { CustomDomain } from './builder/components/CustomDomain';
 import { CMSPanel } from './builder/components/CMSPanel';
-import { analytics } from './builder/framepro/analytics';
 import { EmailBuilderPanel } from './builder/components/EmailBuilderPanel';
 import { IntegrationsHub } from './builder/components/IntegrationsHub';
+import { analytics } from './builder/webpro/analytics';
 import { MobilePanel } from './builder/components/MobilePanel';
+import { UpdateButton } from '../components/UpdateButton';
 import { toast } from 'sonner';
 
-// FramePro modules
-import { FRAMEPRO_TEMPLATES, cloneTemplateConfig, FrameProTemplate } from './builder/framepro/templates';
-import { demoMode, DemoProject, VersionSnapshot } from './builder/framepro/demo';
+// WebPro modules
+import { WEBPRO_TEMPLATES, cloneTemplateConfig, WebProTemplate } from './builder/webpro/templates';
+import { demoMode, DemoProject, VersionSnapshot } from './builder/webpro/demo';
 import { checkAndSeed } from '../modules/webBuilder/seed';
-import { downloadHtml, downloadProjectJson, downloadAllPages } from './builder/framepro/export';
-import { openPreviewWindow, PreviewHandle } from './builder/framepro/preview';
+import { downloadHtml, downloadProjectJson, downloadAllPages } from './builder/webpro/export';
+import { openPreviewWindow, PreviewHandle } from './builder/webpro/preview';
 
-// Standalone FramePro mode placeholders
+// Standalone WebPro mode placeholders
 const projectManager: any = null;
 const publishAdapter: any = null;
 const generateV0Config: any = null;
@@ -89,7 +90,7 @@ class BuilderErrorBoundary extends Component<{ children: React.ReactNode }, { ha
         this.state = { hasError: false, error: null };
     }
     static getDerivedStateFromError(e: Error) { return { hasError: true, error: e }; }
-    componentDidCatch(e: Error, info: React.ErrorInfo) { console.error('[FramePro]', e, info); }
+    componentDidCatch(e: Error, info: React.ErrorInfo) { console.error('[WebPro]', e, info); }
     render() {
         if (this.state.hasError) return (
             <div className="flex flex-col items-center justify-center h-screen bg-slate-50 gap-6 p-12">
@@ -172,7 +173,7 @@ interface SiteItem {
 
 // ─── Main Inner Component ──────────────────────────────────────────────────────
 
-const FrameProEditorInner: React.FC = () => {
+const WebProEditorInner: React.FC = () => {
     const isDemoActive = demoMode.isActive();
     useVersionChecker(isDemoActive);
 
@@ -511,11 +512,9 @@ const FrameProEditorInner: React.FC = () => {
                 {/* Dashboard header */}
                 <header className="bg-white border-b border-slate-200 px-8 py-5 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center">
-                            <Zap size={20} className="text-white" />
-                        </div>
+                        <img src="/brand/icon.svg" alt="" className="w-10 h-10" />
                         <div>
-                            <h1 className="text-lg font-black text-slate-900">FramePro</h1>
+                            <img src="/brand/wordmark.png" alt="WebPro" className="h-6 w-auto" />
                             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
                                 Editor Web Visual
                             </p>
@@ -602,7 +601,7 @@ const FrameProEditorInner: React.FC = () => {
                     <div className="mt-12">
                         <h2 className="text-xl font-black text-slate-900 mb-5">Plantillas disponibles</h2>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                            {FRAMEPRO_TEMPLATES.map(t => (
+                            {WEBPRO_TEMPLATES.map(t => (
                                 <button
                                     key={t.id}
                                     onClick={async () => {
@@ -697,13 +696,11 @@ const FrameProEditorInner: React.FC = () => {
                     </button>
                     <div className="h-6 w-px bg-slate-100 shrink-0" />
                     <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="w-7 h-7 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-xl flex items-center justify-center shrink-0">
-                            <Zap size={14} className="text-white" />
-                        </div>
+                        <img src="/brand/icon.svg" alt="" className="w-7 h-7 shrink-0" />
                         <div className="min-w-0">
                             <h1 className="text-sm font-black text-slate-800 leading-none truncate max-w-[150px]">{selectedSite.name}</h1>
                             <p className="text-[8px] text-slate-400 font-bold uppercase tracking-tighter">
-                                FramePro
+                                WebPro
                             </p>
                         </div>
                     </div>
@@ -867,6 +864,8 @@ const FrameProEditorInner: React.FC = () => {
                         {isPublishing ? <Loader2 size={14} className="animate-spin" /> : isDemoActive ? <Download size={14} /> : <Globe size={14} />}
                         {isPublishing ? 'Publicando…' : isDemoActive ? 'Exportar HTML' : 'Publicar'}
                     </button>
+
+                    <UpdateButton />
                 </div>
             </header>
 
@@ -1032,7 +1031,7 @@ const EmptyState: React.FC<{ onNew: () => void }> = ({ onNew }) => (
 );
 
 const SiteCard: React.FC<{ site: SiteItem; onOpen: () => void; onDelete: () => void; onDuplicate: () => void }> = ({ site, onOpen, onDelete, onDuplicate }) => {
-    const template = FRAMEPRO_TEMPLATES.find(t => t.id === site.templateId);
+    const template = WEBPRO_TEMPLATES.find(t => t.id === site.templateId);
     return (
         <div className="group relative bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
             <div className="h-24 flex items-center justify-center text-4xl cursor-pointer" style={{ backgroundColor: template?.previewColor ?? '#4f46e5', opacity: 0.85 }} onClick={onOpen}>
@@ -1063,7 +1062,7 @@ const NewSiteModal: React.FC<{
     onClose: () => void;
     onCreate: (config: SiteConfigV1, templateId: string) => Promise<void>;
 }> = ({ onClose, onCreate }) => {
-    const [selectedTemplate, setSelectedTemplate] = useState<FrameProTemplate>(FRAMEPRO_TEMPLATES[0]);
+    const [selectedTemplate, setSelectedTemplate] = useState<WebProTemplate>(WEBPRO_TEMPLATES[0]);
     const [brandName, setBrandName] = useState('');
 
     return (
@@ -1095,7 +1094,7 @@ const NewSiteModal: React.FC<{
                     {/* Template grid */}
                     <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Plantilla base</label>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                        {FRAMEPRO_TEMPLATES.map(t => (
+                        {WEBPRO_TEMPLATES.map(t => (
                             <button
                                 key={t.id}
                                 onClick={() => setSelectedTemplate(t)}
@@ -1303,7 +1302,7 @@ const ImportModal: React.FC<{
                 <div className="flex items-center justify-between mb-6">
                     <div>
                         <h2 className="text-xl font-black text-slate-900">Importar proyecto</h2>
-                        <p className="text-slate-400 text-xs mt-0.5">Carga un archivo .json exportado desde FramePro</p>
+                        <p className="text-slate-400 text-xs mt-0.5">Carga un archivo .json exportado desde WebPro</p>
                     </div>
                     <button onClick={onClose} className="p-2.5 rounded-2xl bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors">
                         <X size={18} />
@@ -1341,7 +1340,7 @@ const ImportModal: React.FC<{
                     <textarea
                         value={json}
                         onChange={e => setJson(e.target.value)}
-                        placeholder='{"framepro": "1.0", "config": {...}}'
+                        placeholder='{"webpro": "1.0", "config": {...}}'
                         rows={4}
                         className="w-full px-4 py-3 border border-slate-200 rounded-2xl font-mono text-xs text-slate-700 placeholder-slate-300 focus:outline-none focus:border-indigo-400 resize-none"
                     />
@@ -1368,6 +1367,6 @@ const ImportModal: React.FC<{
 
 export const WebsiteBuilder: React.FC = () => (
     <BuilderErrorBoundary>
-        <FrameProEditorInner />
+        <WebProEditorInner />
     </BuilderErrorBoundary>
 );

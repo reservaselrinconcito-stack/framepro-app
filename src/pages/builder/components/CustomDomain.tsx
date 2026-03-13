@@ -1,14 +1,14 @@
 /**
- * CustomDomain.tsx — FramePro Custom Domain
+ * CustomDomain.tsx — WebPro Custom Domain
  *
  * Permite al usuario conectar un dominio propio (ej: miempresa.com)
  * al sitio publicado. Guía paso a paso con instrucciones DNS.
  *
  * Flujo:
  *   1. Usuario introduce su dominio
- *   2. FramePro muestra los registros DNS que debe configurar
+ *   2. WebPro muestra los registros DNS que debe configurar
  *   3. Usuario va a su registrador (GoDaddy, Namecheap, Cloudflare…)
- *   4. FramePro verifica la propagación via DNS lookup
+ *   4. WebPro verifica la propagación via DNS lookup
  *   5. Si OK → dominio queda vinculado al sitio
  *
  * Backend requerido para verificación y TLS:
@@ -67,13 +67,13 @@ function getDNSRecords(domain: string, serverIp: string = '1.2.3.4'): DNSRecord[
             { type: 'A', name: 'www', value: serverIp, ttl: 3600, purpose: 'Apunta www a nuestros servidores' },
         ]
         : [
-            { type: 'CNAME', name: domain.split('.')[0], value: 'proxy.framepro.app', ttl: 3600, purpose: 'Apunta el subdominio a FramePro' },
+            { type: 'CNAME', name: domain.split('.')[0], value: 'proxy.webpro.app', ttl: 3600, purpose: 'Apunta el subdominio a WebPro' },
         ];
 
     records.push({
         type: 'TXT',
-        name: '_framepro',
-        value: `framepro-verify=${btoa(domain).slice(0, 16)}`,
+        name: '_webpro',
+        value: `webpro-verify=${btoa(domain).slice(0, 16)}`,
         ttl: 3600,
         purpose: 'Verificación de propiedad del dominio',
     });

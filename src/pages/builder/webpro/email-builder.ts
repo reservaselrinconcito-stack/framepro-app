@@ -1,5 +1,5 @@
 /**
- * email-builder.ts — FramePro Email Builder
+ * email-builder.ts — WebPro Email Builder
  *
  * Genera emails HTML compatibles con Gmail, Outlook, Apple Mail, etc.
  * Usa tables como layout base (estándar de la industria para email).

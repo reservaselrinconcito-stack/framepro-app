@@ -83,6 +83,10 @@ export const Canvas: React.FC<CanvasProps> = ({
                                 }
                             }}
                             onClickCapture={(e) => {
+                                const target = e.target as HTMLElement;
+                                if (target.closest('a, button, input, textarea, select, form')) {
+                                    e.preventDefault();
+                                }
                                 e.stopPropagation();
                                 onSelectBlock(block.id);
                             }}
@@ -130,8 +134,6 @@ export const Canvas: React.FC<CanvasProps> = ({
                                 device={device}
                             />
 
-                            {/* Transparent overlay — intercepts clicks so links in preview don't navigate */}
-                            <div className="absolute inset-0 bg-transparent" />
                         </div>
                     ))}
                 </div>

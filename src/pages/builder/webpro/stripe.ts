@@ -1,5 +1,5 @@
 /**
- * stripe.ts — FramePro Stripe Integration
+ * stripe.ts — WebPro Stripe Integration
  *
  * Flujo de pago para templates de pago en el Marketplace.
  * Usa Stripe Checkout (hosted) — el más simple y seguro.
@@ -24,7 +24,7 @@
  *   STRIPE_WEBHOOK_SECRET=whsec_...
  */
 
-import { FrameProTemplate } from './templates';
+import { WebProTemplate } from './templates';
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -55,7 +55,7 @@ export interface VerifyResult {
 
 // ─── Local purchase store ──────────────────────────────────────────────────────
 
-const PURCHASE_KEY = 'framepro_purchases_v1';
+const PURCHASE_KEY = 'webpro_purchases_v1';
 
 function readPurchases(): PurchaseRecord[] {
     try {
@@ -92,7 +92,7 @@ export const stripeClient = {
      * Redirects the browser to the Stripe-hosted checkout page.
      */
     async startCheckout(
-        template: FrameProTemplate,
+        template: WebProTemplate,
         config: StripeConfig,
         options?: { successUrl?: string; cancelUrl?: string }
     ): Promise<CheckoutResult> {
@@ -181,7 +181,7 @@ export const stripeClient = {
             purchases.push({ templateId, sessionId: `mock-${Date.now()}`, purchasedAt: Date.now() });
             writePurchases(purchases);
         }
-        console.info(`[FramePro Stripe] 🧪 Mock purchase recorded for "${templateId}"`);
+        console.info(`[WebPro Stripe] 🧪 Mock purchase recorded for "${templateId}"`);
     },
 };
 
@@ -189,7 +189,7 @@ export const stripeClient = {
 
 export const STRIPE_BACKEND_TEMPLATE = `
 /**
- * FramePro Stripe Backend — Express.js
+ * WebPro Stripe Backend — Express.js
  * Deploy to: Railway, Render, Fly.io, Vercel Serverless, etc.
  *
  * npm install express stripe cors dotenv
@@ -220,7 +220,7 @@ app.post('/api/stripe/create-session', async (req, res) => {
                 price_data: {
                     currency: currency || 'eur',
                     product_data: {
-                        name: \`FramePro Template: \${templateName}\`,
+                        name: \`WebPro Template: \${templateName}\`,
                         description: \`Plantilla profesional para tu sitio web\`,
                         metadata: { templateId },
                     },
@@ -282,6 +282,6 @@ app.post('/api/stripe/webhook', (req, res) => {
 });
 
 app.listen(process.env.PORT || 3001, () =>
-    console.log('FramePro Stripe server running on port', process.env.PORT || 3001)
+    console.log('WebPro Stripe server running on port', process.env.PORT || 3001)
 );
 `;

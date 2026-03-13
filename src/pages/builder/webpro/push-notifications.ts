@@ -1,5 +1,5 @@
 /**
- * push-notifications.ts — FramePro Push Notifications
+ * push-notifications.ts — WebPro Push Notifications
  *
  * Notificaciones push para los visitantes del sitio publicado.
  * Usa la Web Push API estándar del navegador (sin app nativa).
@@ -8,7 +8,7 @@
  *   1. El visitante visita el sitio y acepta el permiso
  *   2. El navegador genera una PushSubscription única
  *   3. La suscripción se envía al servidor (VAPID)
- *   4. Desde el panel FramePro se envían notificaciones
+ *   4. Desde el panel WebPro se envían notificaciones
  *
  * Setup VAPID (genera claves una vez):
  *   npx web-push generate-vapid-keys
@@ -58,7 +58,7 @@ function saveCampaign(siteSlug: string, c: PushCampaign): void {
 // ─── Service Worker script (inline string) ────────────────────────────────────
 
 export const SERVICE_WORKER_JS = `
-/* FramePro Push Service Worker — save as /sw.js at site root */
+/* WebPro Push Service Worker — save as /sw.js at site root */
 self.addEventListener('push', function(event) {
   var data = event.data ? event.data.json() : {};
   var title = data.title || 'Notificación';
@@ -67,7 +67,7 @@ self.addEventListener('push', function(event) {
     icon: data.icon || '/favicon.ico',
     badge: data.badge || '/badge.png',
     image: data.image,
-    tag: data.tag || 'framepro',
+    tag: data.tag || 'webpro',
     data: { url: data.actionUrl || '/' },
     actions: data.actionUrl
       ? [{ action: 'open', title: 'Ver ahora' }]
@@ -243,7 +243,7 @@ export const pushNotifications = {
 
   backendTemplate: `
 /**
- * FramePro Push Notifications Backend — Express.js
+ * WebPro Push Notifications Backend — Express.js
  *
  * npm install web-push express cors
  *
@@ -301,7 +301,7 @@ app.post('/api/push/send', async (req, res) => {
 app.get('/api/push/count', (req, res) => res.json({ count: subscriptions.size }));
 
 app.listen(process.env.PORT || 3002, () =>
-  console.log('FramePro Push server on port', process.env.PORT || 3002)
+  console.log('WebPro Push server on port', process.env.PORT || 3002)
 );
 `,
 };

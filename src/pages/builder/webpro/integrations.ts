@@ -1,5 +1,5 @@
 /**
- * integrations.ts — FramePro Integrations Hub
+ * integrations.ts — WebPro Integrations Hub
  *
  * Conecta eventos del sitio con servicios externos:
  *   - Zapier (via webhook)
@@ -162,7 +162,7 @@ function buildSlackBody(integration: Integration, payload: Record<string, any>):
     return {
         text: `🔔 *${integration.name}*`,
         blocks: [
-            { type: 'header', text: { type: 'plain_text', text: `FramePro · ${integration.name}` } },
+            { type: 'header', text: { type: 'plain_text', text: `WebPro · ${integration.name}` } },
             {
                 type: 'section',
                 fields: Object.entries(payload).slice(0, 10).map(([k, v]) => ({
@@ -182,7 +182,7 @@ function buildBody(integration: Integration, payload: Record<string, any>): stri
         return JSON.stringify(buildSlackBody(integration, payload));
     }
     return JSON.stringify({
-        source: 'framepro',
+        source: 'webpro',
         site: integration.siteSlug,
         integration: integration.name,
         event: payload._event ?? 'unknown',
@@ -226,7 +226,7 @@ export const integrations = {
         writeAll(siteSlug, readAll(siteSlug).filter(i => i.id !== id));
     },
 
-    async test(integration: Integration, payload: Record<string, any> = { _event: 'test', message: 'Test desde FramePro' }): Promise<TriggerResult> {
+    async test(integration: Integration, payload: Record<string, any> = { _event: 'test', message: 'Test desde WebPro' }): Promise<TriggerResult> {
         return this._send(integration, payload);
     },
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Check } from 'lucide-react';
-import { FRAMEPRO_THEMES, FrameProTheme } from '../framepro/themes';
+import { WEBPRO_THEMES, WebProTheme } from '../webpro/themes';
 import { DesignTokens } from '@/modules/webBuilder/types';
 
 interface ThemePickerProps {
@@ -19,7 +19,7 @@ export const ThemePicker: React.FC<ThemePickerProps> = ({ currentTheme, onApply,
                 {/* Header */}
                 <div className="flex items-center justify-between p-8 border-b border-slate-100 shrink-0">
                     <div>
-                        <h2 className="text-2xl font-black text-slate-900">Temas FramePro</h2>
+                        <h2 className="text-2xl font-black text-slate-900">Temas WebPro</h2>
                         <p className="text-slate-400 text-sm mt-1">Cambia el diseño completo de tu sitio con un clic</p>
                     </div>
                     <button
@@ -33,7 +33,7 @@ export const ThemePicker: React.FC<ThemePickerProps> = ({ currentTheme, onApply,
                 {/* Theme grid */}
                 <div className="flex-1 overflow-y-auto p-8">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                        {FRAMEPRO_THEMES.map(theme => (
+                        {WEBPRO_THEMES.map(theme => (
                             <ThemeCard
                                 key={theme.id}
                                 theme={theme}
@@ -58,7 +58,7 @@ export const ThemePicker: React.FC<ThemePickerProps> = ({ currentTheme, onApply,
 // ─── Theme Card ────────────────────────────────────────────────────────────────
 
 const ThemeCard: React.FC<{
-    theme: FrameProTheme;
+    theme: WebProTheme;
     isActive: boolean;
     onApply: () => void;
 }> = ({ theme, isActive, onApply }) => {

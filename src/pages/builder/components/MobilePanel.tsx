@@ -1,5 +1,5 @@
 /**
- * MobilePanel.tsx — FramePro Mobile & Push UI
+ * MobilePanel.tsx — WebPro Mobile & Push UI
  * Generador de app móvil + gestión de campañas push.
  */
 
@@ -12,10 +12,10 @@ import {
 import {
     AppConfig, generateMobileFiles, downloadMobileZip,
     getAppConfig, saveAppConfig
-} from '../framepro/mobile-app';
+} from '../webpro/mobile-app';
 import {
     PushCampaign, pushNotifications
-} from '../framepro/push-notifications';
+} from '../webpro/push-notifications';
 import { SiteConfigV1 } from '@/modules/webBuilder/types';
 
 // ─── Tabs ─────────────────────────────────────────────────────────────────────
@@ -51,7 +51,7 @@ const AppConfigForm: React.FC<{
         iconUrl: '',
         primaryColor: siteConfig.theme?.colors?.primary ?? '#4f46e5',
         backgroundColor: '#ffffff',
-        siteUrl: `https://${siteSlug}.framepro.app`,
+        siteUrl: `https://${siteSlug}.webpro.app`,
         platforms: ['pwa', 'android', 'ios'],
         enablePush: true,
         enableCamera: false,

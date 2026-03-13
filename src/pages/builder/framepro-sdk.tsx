@@ -1,16 +1,16 @@
 /**
- * framepro-sdk.ts — FramePro White-Label SDK
+ * webpro-sdk.ts — WebPro White-Label SDK
  *
- * SDK mínimo para embeber FramePro en cualquier aplicación React.
+ * SDK mínimo para embeber WebPro en cualquier aplicación React.
  * Permite que terceros integren el editor con su propia marca,
  * colores, plantillas y comportamiento de guardado personalizado.
  *
  * Uso mínimo:
  * ─────────────────────────────────────────────────────────
- * import { FrameProSDK, createFrameProConfig } from './framepro-sdk';
+ * import { WebProSDK, createWebProConfig } from './webpro-sdk';
  *
- * <FrameProSDK
- *   config={createFrameProConfig({
+ * <WebProSDK
+ *   config={createWebProConfig({
  *     brand: { name: 'MiApp Builder', primaryColor: '#ff6b35' },
  *     onSave: async (config) => myBackend.save(config),
  *   })}
@@ -22,9 +22,9 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { SiteConfigV1 } from '@/modules/webBuilder/types';
-import { FRAMEPRO_TEMPLATES, FrameProTemplate, cloneTemplateConfig } from './framepro/templates';
-import { demoMode } from './framepro/demo';
-import { exportHtml } from './framepro/export';
+import { WEBPRO_TEMPLATES, WebProTemplate, cloneTemplateConfig } from './webpro/templates';
+import { demoMode } from './webpro/demo';
+import { exportHtml } from './webpro/export';
 
 // ─── SDK Config Type ───────────────────────────────────────────────────────────
 
@@ -33,7 +33,7 @@ export interface SDKBrand {
     name: string;
     /** URL of your logo (SVG or PNG recommended, 32×32px) */
     logoUrl?: string;
-    /** Primary brand color (hex) — overrides FramePro's default indigo */
+    /** Primary brand color (hex) — overrides WebPro's default indigo */
     primaryColor?: string;
     /** Accent color for secondary elements */
     accentColor?: string;
@@ -49,7 +49,7 @@ export interface SDKTemplateFilter {
     /** Only show these categories */
     allowedCategories?: string[];
     /** Custom templates to add to the library */
-    customTemplates?: FrameProTemplate[];
+    customTemplates?: WebProTemplate[];
 }
 
 export interface SDKFeatureFlags {
@@ -106,15 +106,15 @@ export interface SDKConfig {
 
 // ─── SDK Context ───────────────────────────────────────────────────────────────
 
-interface FrameProSDKContext {
+interface WebProSDKContext {
     config: SDKConfig;
-    templates: FrameProTemplate[];
+    templates: WebProTemplate[];
     features: Required<SDKFeatureFlags>;
 }
 
 // Internal context for passing SDK config down the tree
 import { createContext, useContext } from 'react';
-const SDKCtx = createContext<FrameProSDKContext | null>(null);
+const SDKCtx = createContext<WebProSDKContext | null>(null);
 export const useSDKContext = () => useContext(SDKCtx)!;
 
 // ─── Default feature flags ─────────────────────────────────────────────────────
@@ -130,13 +130,13 @@ const DEFAULT_FEATURES: Required<SDKFeatureFlags> = {
     embedded: false,
 };
 
-// ─── createFrameProConfig helper ──────────────────────────────────────────────
+// ─── createWebProConfig helper ──────────────────────────────────────────────
 
 /**
  * Type-safe config factory with sensible defaults.
  * Use this instead of constructing SDKConfig manually.
  */
-export function createFrameProConfig(options: {
+export function createWebProConfig(options: {
     brand: SDKBrand;
     templates?: SDKTemplateFilter;
     features?: Partial<SDKFeatureFlags>;
@@ -159,7 +159,7 @@ export function createFrameProConfig(options: {
 // ─── CSS injection ─────────────────────────────────────────────────────────────
 
 function injectBrandCSS(brand: SDKBrand): () => void {
-    const id = 'framepro-sdk-brand';
+    const id = 'webpro-sdk-brand';
     let el = document.getElementById(id) as HTMLStyleElement | null;
     if (!el) {
         el = document.createElement('style');
@@ -195,9 +195,9 @@ function shadeColor(hex: string, percent: number): string {
     return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
 }
 
-// ─── FrameProSDK Component ─────────────────────────────────────────────────────
+// ─── WebProSDK Component ─────────────────────────────────────────────────────
 
-interface FrameProSDKProps {
+interface WebProSDKProps {
     config: SDKConfig;
     /** Override the height of the editor container (default: 100vh in fullscreen, 100% in embedded) */
     height?: string;
@@ -205,15 +205,15 @@ interface FrameProSDKProps {
 }
 
 /**
- * Drop-in FramePro editor with white-label support.
+ * Drop-in WebPro editor with white-label support.
  * Mounts the full editor branded with your config.
  */
-export const FrameProSDK: React.FC<FrameProSDKProps> = ({ config, height, className = '' }) => {
+export const WebProSDK: React.FC<WebProSDKProps> = ({ config, height, className = '' }) => {
     const features = { ...DEFAULT_FEATURES, ...config.features };
 
     // Filter templates per SDK config
     const templates = React.useMemo(() => {
-        let list = [...FRAMEPRO_TEMPLATES, ...(config.templates?.customTemplates ?? [])];
+        let list = [...WEBPRO_TEMPLATES, ...(config.templates?.customTemplates ?? [])];
         if (config.templates?.allowedTemplates?.length) {
             list = list.filter(t => config.templates!.allowedTemplates!.includes(t.id));
         }
@@ -247,7 +247,7 @@ export const FrameProSDK: React.FC<FrameProSDKProps> = ({ config, height, classN
 
     return (
         <SDKCtx.Provider value={{ config, templates, features }}>
-            <div style={containerStyle} className={`framepro-sdk-root ${className}`}>
+            <div style={containerStyle} className={`webpro-sdk-root ${className}`}>
                 <SDKEditorShell config={config} features={features} templates={templates} />
             </div>
         </SDKCtx.Provider>
@@ -259,7 +259,7 @@ export const FrameProSDK: React.FC<FrameProSDKProps> = ({ config, height, classN
 const SDKEditorShell: React.FC<{
     config: SDKConfig;
     features: Required<SDKFeatureFlags>;
-    templates: FrameProTemplate[];
+    templates: WebProTemplate[];
 }> = ({ config, features, templates }) => {
     const [siteConfig, setSiteConfig] = useState<SiteConfigV1 | null>(config.initialConfig ?? null);
     const [saving, setSaving] = useState(false);
@@ -277,7 +277,7 @@ const SDKEditorShell: React.FC<{
             setSaved(true);
             setTimeout(() => setSaved(false), 2000);
         } catch (e: any) {
-            console.error('[FramePro SDK] Save failed:', e);
+            console.error('[WebPro SDK] Save failed:', e);
         } finally {
             setSaving(false);
         }
@@ -397,7 +397,7 @@ const SDKEditorShell: React.FC<{
                     <div className="text-5xl mb-4">🛠️</div>
                     <h3 className="text-lg font-black text-slate-700 mb-2">SDK Editor Area</h3>
                     <p className="text-sm text-slate-500 leading-relaxed">
-                        Aquí se integra el canvas completo de FramePro (<code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">WebsiteBuilder</code>).
+                        Aquí se integra el canvas completo de WebPro (<code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">WebsiteBuilder</code>).
                         Pasa el <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">siteConfig</code> como <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">initialConfig</code> al componente principal y conecta los callbacks.
                     </p>
                     <div className="mt-6 p-4 bg-white border border-slate-200 rounded-2xl text-left">
@@ -415,10 +415,10 @@ const SDKEditorShell: React.FC<{
 
 /**
  * Imperative API for non-React environments or quick integrations.
- * Mounts FramePro into a DOM element.
+ * Mounts WebPro into a DOM element.
  *
  * @example
- * const sdk = FrameProAPI.mount('#my-container', {
+ * const sdk = WebProAPI.mount('#my-container', {
  *   brand: { name: 'MyApp', primaryColor: '#ff6b35' },
  *   callbacks: { onSave: (cfg) => fetch('/api/save', { method: 'POST', body: JSON.stringify(cfg) }) }
  * });
@@ -427,29 +427,29 @@ const SDKEditorShell: React.FC<{
  * sdk.unmount();
  * sdk.getSiteConfig();
  */
-export const FrameProAPI = {
-    mount(selector: string | HTMLElement, options: Omit<FrameProSDKProps, 'config'> & { brand: SDKBrand } & Omit<SDKConfig, 'brand'>) {
+export const WebProAPI = {
+    mount(selector: string | HTMLElement, options: Omit<WebProSDKProps, 'config'> & { brand: SDKBrand } & Omit<SDKConfig, 'brand'>) {
         const el = typeof selector === 'string' ? document.querySelector(selector) : selector;
-        if (!el) throw new Error(`[FramePro SDK] Element not found: ${selector}`);
+        if (!el) throw new Error(`[WebPro SDK] Element not found: ${selector}`);
 
         const { brand, features, templates, callbacks, initialConfig, businessContext, locale, ...rest } = options as any;
-        const sdkConfig = createFrameProConfig({ brand, features, templates, callbacks, initialConfig, businessContext, locale });
+        const sdkConfig = createWebProConfig({ brand, features, templates, callbacks, initialConfig, businessContext, locale });
 
         // Dynamic import of ReactDOM to avoid bundling issues
         import('react-dom/client').then(({ createRoot }) => {
             const root = createRoot(el as HTMLElement);
-            root.render(React.createElement(FrameProSDK, { config: sdkConfig, ...rest }));
-            (el as any).__framepro_root = root;
+            root.render(React.createElement(WebProSDK, { config: sdkConfig, ...rest }));
+            (el as any).__webpro_root = root;
         });
 
         return {
-            unmount: () => (el as any).__framepro_root?.unmount(),
-            getSiteConfig: () => (el as any).__framepro_config as SiteConfigV1 | null,
+            unmount: () => (el as any).__webpro_root?.unmount(),
+            getSiteConfig: () => (el as any).__webpro_config as SiteConfigV1 | null,
         };
     },
 };
 
 // ─── Re-exports for convenience ────────────────────────────────────────────────
 
-export type { SiteConfigV1, FrameProTemplate };
-export { FRAMEPRO_TEMPLATES, cloneTemplateConfig };
+export type { SiteConfigV1, WebProTemplate };
+export { WEBPRO_TEMPLATES, cloneTemplateConfig };

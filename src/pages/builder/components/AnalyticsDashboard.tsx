@@ -1,5 +1,5 @@
 /**
- * AnalyticsDashboard.tsx — FramePro Analytics UI
+ * AnalyticsDashboard.tsx — WebPro Analytics UI
  *
  * Panel completo de métricas del sitio.
  * Muestra: vistas, sesiones, CTAs, dispositivos, referrers, páginas top.
@@ -7,7 +7,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { X, TrendingUp, Users, MousePointer, Clock, Smartphone, Monitor, Tablet, Globe, RefreshCw, BarChart2, ArrowUp, ArrowDown } from 'lucide-react';
-import { analytics, AnalyticsReport } from '../framepro/analytics';
+import { analytics, AnalyticsReport } from '../webpro/analytics';
 
 // ─── Mini bar chart ────────────────────────────────────────────────────────────
 

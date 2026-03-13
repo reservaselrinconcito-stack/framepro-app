@@ -1,5 +1,5 @@
 /**
- * IntegrationsHub.tsx — FramePro Integrations UI
+ * IntegrationsHub.tsx — WebPro Integrations UI
  */
 
 import React, { useState, useCallback } from 'react';
@@ -12,7 +12,7 @@ import {
     Integration, IntegrationService, SiteEvent,
     SERVICE_CONFIG, EVENT_LABELS,
     integrations as intAPI, GOOGLE_APPS_SCRIPT_TEMPLATE
-} from '../framepro/integrations';
+} from '../webpro/integrations';
 
 // ─── Status badge ──────────────────────────────────────────────────────────────
 

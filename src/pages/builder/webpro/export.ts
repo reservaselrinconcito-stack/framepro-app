@@ -1,7 +1,7 @@
 /**
- * src/pages/builder/framepro/export.ts
+ * src/pages/builder/webpro/export.ts
  *
- * Exportador HTML estático FramePro.
+ * Exportador HTML estático WebPro.
  * Genera un archivo HTML completo y autónomo desde un SiteConfigV1.
  * El HTML resultante no tiene dependencias externas (CSS inline, no frameworks).
  *
@@ -384,7 +384,9 @@ function renderBlock(block: BlockInstance, config: SiteConfigV1): string {
         case 'Team': return renderTeam(d);
         case 'NewsletterSignup': return renderNewsletter(d);
         case 'ApartmentsGrid': return renderApartments(d);
-        default: return `<!-- Unsupported block: ${block.type} -->`;
+        case 'AvailabilityCalendar': return renderAvailabilityCalendar(d);
+        case 'TrustBadges': return renderTrustBadges(d);
+        default: return renderUnsupportedBlock(block.type, d);
     }
 }
 
@@ -418,6 +420,56 @@ function renderHero(d: any): string {
         </div>
     </div>
 </section>`;
+}
+
+function renderUnsupportedBlock(type: string, d: any): string {
+    return `<section class="fp-section">
+    <div class="container">
+      <div style="border:1px dashed var(--border);border-radius:var(--radius);padding:2rem;background:var(--surface);text-align:center;">
+        <div style="display:inline-block;padding:0.45rem 0.9rem;border-radius:999px;background:color-mix(in srgb, var(--primary) 12%, white);color:var(--primary);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">${esc(type)}</div>
+        <h3 style="margin-top:1rem;font-size:1.4rem;">Bloque visible en editor</h3>
+        <p style="margin-top:0.75rem;color:var(--text-muted);max-width:42rem;margin-left:auto;margin-right:auto;">${esc(d?.title ?? 'Este bloque aun no tenia una version HTML propia para preview/export. Ahora mostramos un placeholder para que no desaparezca en la vista previa.')}</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderAvailabilityCalendar(d: any): string {
+    return `<section class="fp-section" id="availability">
+    <div class="container">
+      <div class="fp-features-header">
+        <h2>${esc(d.title ?? 'Disponibilidad')}</h2>
+        <p>Consulta el estado actual y elige la mejor fecha para continuar.</p>
+      </div>
+      <div style="max-width:760px;margin:0 auto;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;background:var(--surface);box-shadow:0 10px 30px rgba(15,23,42,0.05);">
+        <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0.65rem;text-align:center;font-size:0.8rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">
+          <span>Lun</span><span>Mar</span><span>Mie</span><span>Jue</span><span>Vie</span><span>Sab</span><span>Dom</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0.65rem;margin-top:0.85rem;">
+          ${Array.from({ length: 28 }, (_, i) => {
+              const day = i + 1;
+              const available = ![5, 6, 12, 13, 19, 20].includes(day);
+              return `<div style="aspect-ratio:1;border-radius:16px;border:1px solid ${available ? 'var(--border)' : 'transparent'};display:flex;align-items:center;justify-content:center;background:${available ? 'var(--bg)' : 'color-mix(in srgb, var(--primary) 14%, white)'};color:${available ? 'var(--text)' : 'var(--primary)'};font-weight:800;">${day}</div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderTrustBadges(d: any): string {
+    const badges = d.badges ?? ['Pago seguro', 'Soporte real', 'SSL activo', 'Datos protegidos'];
+    return `<section class="fp-section">
+    <div class="container">
+      <div class="fp-features-header">
+        <h2>${esc(d.title ?? 'Confianza visible')}</h2>
+        <p>${esc(d.subtitle ?? 'Refuerza conversion con senales claras de seguridad y credibilidad.')}</p>
+      </div>
+      <div class="grid-4">
+        ${badges.map((badge: string) => `<div style="padding:1.25rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);text-align:center;font-weight:800;">${esc(badge)}</div>`).join('')}
+      </div>
+    </div>
+  </section>`;
 }
 
 function renderStats(d: any): string {
@@ -553,7 +605,7 @@ function renderFooter(d: any, config: SiteConfigV1): string {
     ${d.phone ? `<p>${esc(d.phone)}</p>` : ''}
     ${d.address ? `<p>${esc(d.address)}</p>` : ''}
     ${links ? `<div class="fp-footer-links">${links}</div>` : ''}
-    <p class="fp-footer-copy">Powered by <strong>FramePro</strong> · ${new Date().getFullYear()}</p>
+    <p class="fp-footer-copy">Powered by <strong>WebPro</strong> · ${new Date().getFullYear()}</p>
 </footer>`;
 }
 
@@ -666,12 +718,12 @@ export function downloadAllPages(config: SiteConfigV1): void {
 // ─── Export project as ZIP (HTML + assets listing) ────────────────────────────
 
 export function downloadProjectJson(config: SiteConfigV1): void {
-    const json = JSON.stringify({ framepro: '1.0', exportedAt: new Date().toISOString(), config }, null, 2);
+    const json = JSON.stringify({ webpro: '1.0', exportedAt: new Date().toISOString(), config }, null, 2);
     const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${config.slug || 'sitio'}-framepro.json`;
+    a.download = `${config.slug || 'sitio'}-webpro.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

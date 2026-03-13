@@ -1,5 +1,5 @@
 /**
- * EmailBuilder.tsx — FramePro Email Builder UI
+ * EmailBuilder.tsx — WebPro Email Builder UI
  *
  * Editor visual de emails con:
  *   - Lista de emails del sitio
@@ -20,7 +20,7 @@ import {
     createEmailTemplate, createEmailBlock,
     EMAIL_PRESETS, buildEmail, downloadEmail, previewEmail,
     emailStore
-} from '../framepro/email-builder';
+} from '../webpro/email-builder';
 
 // ─── Block type config ─────────────────────────────────────────────────────────
 

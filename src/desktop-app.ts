@@ -1,5 +1,4 @@
-import { check } from '@tauri-apps/plugin-updater';
-import { relaunch } from '@tauri-apps/plugin-process';
+// Tauri imports removed for web compatibility. They are loaded dynamically when needed.
 
 type UpdateState = 'idle' | 'checking' | 'available' | 'up-to-date' | 'downloading' | 'ready' | 'error';
 
@@ -107,6 +106,7 @@ const mountUpdater = async () => {
     if (state === 'checking' || state === 'downloading') return;
     setButton('checking');
     try {
+      const { check } = await import('@tauri-apps/plugin-updater');
       const update = await check();
       if (update?.available) {
         updateHandle = update;
@@ -155,6 +155,7 @@ const mountUpdater = async () => {
       return;
     }
     if (state === 'ready') {
+      const { relaunch } = await import('@tauri-apps/plugin-process');
       await relaunch();
       return;
     }

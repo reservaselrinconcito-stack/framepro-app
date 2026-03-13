@@ -1,5 +1,5 @@
 /**
- * analytics.ts — FramePro Analytics
+ * analytics.ts — WebPro Analytics
  *
  * Analytics privacyfirst sin cookies ni terceros.
  * Almacena eventos en localStorage + opcionalmente envía a tu backend.

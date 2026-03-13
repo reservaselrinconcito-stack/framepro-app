@@ -1,7 +1,7 @@
 /**
- * src/pages/builder/framepro/demo.ts
+ * src/pages/builder/webpro/demo.ts
  *
- * Modo Demo FramePro.
+ * Modo Demo WebPro.
  * Permite usar el editor completamente SIN backend.
  * Persiste en localStorage con TTL de 7 días.
  *
@@ -17,12 +17,12 @@
  */
 
 import { SiteConfigV1 } from '@/modules/webBuilder/types';
-import { FRAMEPRO_TEMPLATES, cloneTemplateConfig } from './templates';
+import { WEBPRO_TEMPLATES, cloneTemplateConfig } from './templates';
 
 // ─── Constants ─────────────────────────────────────────────────────────────────
 
-const DEMO_KEY = 'framepro_demo_v1';
-const DEMO_ACTIVE_KEY = 'framepro_demo_active';
+const DEMO_KEY = 'webpro_demo_v1';
+const DEMO_ACTIVE_KEY = 'webpro_demo_active';
 const TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -136,10 +136,10 @@ export const demoMode = {
 
     /** Create a new demo project from a template */
     async createFromTemplate(templateId: string, brandName: string): Promise<SiteConfigV1> {
-        const template = FRAMEPRO_TEMPLATES.find(t => t.id === templateId);
+        const template = WEBPRO_TEMPLATES.find(t => t.id === templateId);
         if (!template) {
             // Fallback: SaaS landing
-            const saas = FRAMEPRO_TEMPLATES[0];
+            const saas = WEBPRO_TEMPLATES[0];
             return cloneTemplateConfig(saas, `demo-${Date.now()}`, brandName || 'Mi Sitio');
         }
         const slug = `${templateId}-${Date.now()}`;
@@ -150,7 +150,7 @@ export const demoMode = {
 
     /** Export project as JSON string */
     exportProjectJson(config: SiteConfigV1): string {
-        return JSON.stringify({ framepro: '1.0', exportedAt: new Date().toISOString(), config }, null, 2);
+        return JSON.stringify({ webpro: '1.0', exportedAt: new Date().toISOString(), config }, null, 2);
     },
 
     /** Import a previously exported JSON */
@@ -190,7 +190,7 @@ export const demoMode = {
      * Called automatically by saveProject if versioning is enabled.
      */
     pushVersion(projectId: string, config: SiteConfigV1, label?: string): void {
-        const key = `framepro_history_${projectId}`;
+        const key = `webpro_history_${projectId}`;
         try {
             const raw = localStorage.getItem(key);
             const history: VersionSnapshot[] = raw ? JSON.parse(raw) : [];
@@ -208,7 +208,7 @@ export const demoMode = {
 
     /** Get version history for a project */
     getHistory(projectId: string): VersionSnapshot[] {
-        const key = `framepro_history_${projectId}`;
+        const key = `webpro_history_${projectId}`;
         try {
             const raw = localStorage.getItem(key);
             return raw ? (JSON.parse(raw) as VersionSnapshot[]) : [];
@@ -224,7 +224,7 @@ export const demoMode = {
     /** Clear history for a project */
     clearHistory(projectId: string): void {
         try {
-            localStorage.removeItem(`framepro_history_${projectId}`);
+            localStorage.removeItem(`webpro_history_${projectId}`);
         } catch { /* noop */ }
     },
 

@@ -1,5 +1,5 @@
 /**
- * collaboration.ts — FramePro Real-Time Collaboration
+ * collaboration.ts — WebPro Real-Time Collaboration
  *
  * Colaboración multi-usuario sobre el mismo sitio usando Yjs + WebSocket.
  * Cada usuario ve el cursor y los cambios de los demás en tiempo real.
@@ -150,7 +150,7 @@ export function createCollabSession(
 
             ws.onerror = () => ws?.close();
         } catch (e) {
-            console.warn('[FramePro Collab] WebSocket connect failed:', e);
+            console.warn('[WebPro Collab] WebSocket connect failed:', e);
             if (!destroyed) reconnectTimer = setTimeout(connect, 5000);
         }
     }
@@ -248,7 +248,7 @@ export function createCollabSession(
 
 export const COLLAB_SERVER_TEMPLATE = `
 /**
- * FramePro Collaboration Server
+ * WebPro Collaboration Server
  * Minimal WebSocket hub — no database required.
  * Run: node collab-server.js
  * Deploy: railway up / fly deploy
@@ -288,5 +288,5 @@ wss.on('connection', (ws, req) => {
     });
 });
 
-console.log(\`FramePro Collab Server running on ws://localhost:\${PORT}\`);
+console.log(\`WebPro Collab Server running on ws://localhost:\${PORT}\`);
 `;

@@ -1,12 +1,12 @@
 /**
- * CMSPanel.tsx — FramePro Headless CMS UI
+ * CMSPanel.tsx — WebPro Headless CMS UI
  *
  * Panel completo para gestionar colecciones y entradas del CMS.
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, Plus, Database, FileText, Trash2, Edit3, Eye, EyeOff, Download, Search, ChevronRight, Check, ArrowLeft, Save } from 'lucide-react';
-import { cms, CMSCollection, CMSEntry, CMSField, COLLECTION_PRESETS } from '../framepro/headless-cms';
+import { cms, CMSCollection, CMSEntry, CMSField, COLLECTION_PRESETS } from '../webpro/headless-cms';
 
 // ─── Field Editor ─────────────────────────────────────────────────────────────
 

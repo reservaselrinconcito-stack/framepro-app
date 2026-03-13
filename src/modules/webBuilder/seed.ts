@@ -27,7 +27,7 @@ export const SEED_DATA: SiteConfigV1 = {
                     variant: 'A',
                     data: {
                         title: 'Evoluciona tu flujo de trabajo',
-                        subtitle: 'Construye sitios increíbles en minutos, no horas. FramePro te da el poder creativo que necesitas.',
+                        subtitle: 'Construye sitios increíbles en minutos, no horas. WebPro te da el poder creativo que necesitas.',
                         ctaLabel: 'Empezar ahora free',
                         imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
                     },
@@ -39,11 +39,11 @@ export const SEED_DATA: SiteConfigV1 = {
 };
 
 export async function checkAndSeed() {
-    const isSeeded = localStorage.getItem(`framepro_demo__${SEEDED_KEY}`);
+    const isSeeded = localStorage.getItem(`webpro_demo__${SEEDED_KEY}`);
     if (!isSeeded) {
         console.log('[Seed] Seeding demo data...');
         // Seed some initial projects
         await WebDemoStorageAdapter.save('demo-saas', SEED_DATA);
-        localStorage.setItem(`framepro_demo__${SEEDED_KEY}`, 'true');
+        localStorage.setItem(`webpro_demo__${SEEDED_KEY}`, 'true');
     }
 }

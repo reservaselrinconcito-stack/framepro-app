@@ -1,5 +1,5 @@
 /**
- * Marketplace.tsx — FramePro Template Marketplace
+ * Marketplace.tsx — WebPro Template Marketplace
  *
  * Galería completa de plantillas con filtros, búsqueda, preview en detalle
  * y aplicación directa al editor o creación de nuevo sitio.
@@ -10,10 +10,10 @@ import {
     Search, Star, Download, Tag, Zap, X, ChevronLeft,
     Check, Eye, Lock, Gift, Filter, ArrowRight, Sparkles
 } from 'lucide-react';
-import { FRAMEPRO_TEMPLATES, FrameProTemplate, cloneTemplateConfig } from '../framepro/templates';
+import { WEBPRO_TEMPLATES, WebProTemplate, cloneTemplateConfig } from '../webpro/templates';
 import { SiteConfigV1 } from '@/modules/webBuilder/types';
-import { demoMode } from '../framepro/demo';
-import { stripeClient } from '../framepro/stripe';
+import { demoMode } from '../webpro/demo';
+import { stripeClient } from '../webpro/stripe';
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -62,7 +62,7 @@ const StarRating: React.FC<{ rating: number; size?: number }> = ({ rating, size 
 // ─── Template Card ─────────────────────────────────────────────────────────────
 
 const TemplateCard: React.FC<{
-    template: FrameProTemplate;
+    template: WebProTemplate;
     onPreview: () => void;
     onUse: () => void;
 }> = ({ template, onPreview, onUse }) => {
@@ -169,7 +169,7 @@ const TemplateCard: React.FC<{
 // ─── Template Detail Modal ─────────────────────────────────────────────────────
 
 const TemplateDetail: React.FC<{
-    template: FrameProTemplate;
+    template: WebProTemplate;
     onClose: () => void;
     onUse: () => void;
 }> = ({ template, onClose, onUse }) => {
@@ -268,7 +268,7 @@ const TemplateDetail: React.FC<{
                                         {template.isPro && (
                                             <div className="mt-1 flex items-center gap-1.5">
                                                 <Lock size={12} className="text-violet-500" />
-                                                <span className="text-xs text-violet-600 font-bold">Incluido en FramePro Pro</span>
+                                                <span className="text-xs text-violet-600 font-bold">Incluido en WebPro Pro</span>
                                             </div>
                                         )}
                                     </div>
@@ -296,7 +296,7 @@ const TemplateDetail: React.FC<{
                                     <Zap size={12} className="text-white" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black text-slate-700">{template.author ?? 'FramePro Team'}</p>
+                                    <p className="text-[10px] font-black text-slate-700">{template.author ?? 'WebPro Team'}</p>
                                     <p className="text-[9px] text-slate-400">Plantilla oficial</p>
                                 </div>
                             </div>
@@ -334,11 +334,11 @@ export const Marketplace: React.FC<MarketplaceProps> = ({ onUseTemplate, onClose
     const [category, setCategory] = useState('all');
     const [sort, setSort] = useState('popular');
     const [showFreeOnly, setShowFreeOnly] = useState(false);
-    const [selectedTemplate, setSelectedTemplate] = useState<FrameProTemplate | null>(null);
+    const [selectedTemplate, setSelectedTemplate] = useState<WebProTemplate | null>(null);
     const [purchasing, setPurchasing] = useState<string | null>(null);
 
     const filtered = useMemo(() => {
-        let list = [...FRAMEPRO_TEMPLATES];
+        let list = [...WEBPRO_TEMPLATES];
 
         if (search.trim()) {
             const q = search.toLowerCase();
@@ -367,7 +367,7 @@ export const Marketplace: React.FC<MarketplaceProps> = ({ onUseTemplate, onClose
         return list;
     }, [search, category, sort, showFreeOnly]);
 
-    const handleUseTemplate = useCallback(async (template: FrameProTemplate) => {
+    const handleUseTemplate = useCallback(async (template: WebProTemplate) => {
         // Free templates: use immediately
         if (template.isFree || template.price === 0) {
             const config = await demoMode.createFromTemplate(template.id, template.config.globalData.brandName);
@@ -415,7 +415,7 @@ export const Marketplace: React.FC<MarketplaceProps> = ({ onUseTemplate, onClose
         }
     }, [onUseTemplate]);
 
-    const freeCount = FRAMEPRO_TEMPLATES.filter(t => t.isFree).length;
+    const freeCount = WEBPRO_TEMPLATES.filter(t => t.isFree).length;
 
     return (
         <div className="fixed inset-0 z-[150] bg-slate-50 flex flex-col">
@@ -436,7 +436,7 @@ export const Marketplace: React.FC<MarketplaceProps> = ({ onUseTemplate, onClose
                     </div>
                     <div>
                         <h1 className="text-base font-black text-slate-900">Marketplace de Plantillas</h1>
-                        <p className="text-[10px] text-slate-400 font-bold">{FRAMEPRO_TEMPLATES.length} plantillas · {freeCount} gratuitas</p>
+                        <p className="text-[10px] text-slate-400 font-bold">{WEBPRO_TEMPLATES.length} plantillas · {freeCount} gratuitas</p>
                     </div>
                 </div>
 
@@ -498,7 +498,7 @@ export const Marketplace: React.FC<MarketplaceProps> = ({ onUseTemplate, onClose
                                 {cat.label}
                                 {cat.id === 'all' && (
                                     <span className={`ml-auto text-[9px] font-black ${category === cat.id ? 'text-white/60' : 'text-slate-400'}`}>
-                                        {FRAMEPRO_TEMPLATES.length}
+                                        {WEBPRO_TEMPLATES.length}
                                     </span>
                                 )}
                             </button>

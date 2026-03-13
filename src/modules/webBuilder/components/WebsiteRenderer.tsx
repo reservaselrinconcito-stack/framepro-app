@@ -26,7 +26,7 @@ export const WebsiteRenderer: React.FC<WebsiteRendererProps> = ({ config, device
     };
 
     return (
-        <div style={style} className="framepro-renderer min-h-full">
+        <div style={style} className="webpro-renderer min-h-full">
             {currentPage.blocks.map((block) => {
                 const Component = BlockRegistry[block.type];
                 if (!Component) {

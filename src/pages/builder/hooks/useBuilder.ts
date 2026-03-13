@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useEffect } from 'react';
+import { useReducer, useCallback, useEffect, useRef } from 'react';
 import { BuilderState, BuilderAction, PageMeta } from '../types';
 import { builderReducer } from '../store';
 import { useHistory } from '../../../modules/webBuilder/hooks/useHistory';
@@ -19,6 +19,12 @@ export function useBuilder(initialConfig: SiteConfigV1 = DEFAULT_SITE_CONFIG_V1)
         inlineEditBlockId: null,
     });
 
+    const stateRef = useRef(state);
+
+    useEffect(() => {
+        stateRef.current = state;
+    }, [state]);
+
     // Sync history → reducer on undo/redo
     useEffect(() => {
         if (history.state !== state.config) {
@@ -27,12 +33,13 @@ export function useBuilder(initialConfig: SiteConfigV1 = DEFAULT_SITE_CONFIG_V1)
     }, [history.state]);
 
     const builderDispatch = useCallback((action: BuilderAction) => {
+        const currentState = stateRef.current;
         dispatch(action);
-        const nextState = builderReducer(state, action);
-        if (nextState.config !== state.config) {
+        const nextState = builderReducer(currentState, action);
+        if (nextState.config !== currentState.config) {
             history.set(nextState.config);
         }
-    }, [state, history]);
+    }, [history]);
 
     // ── Block helpers (page-aware) ──────────────────────────────────────────
     const addBlock = (type: string) => {

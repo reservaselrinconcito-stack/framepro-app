@@ -7,12 +7,15 @@ export function useHistory<T>(initialState: T) {
     const state = useMemo(() => history[currentIndex], [history, currentIndex]);
 
     const set = useCallback((newState: T) => {
-        if (newState === history[currentIndex]) return;
-        const newHistory = history.slice(0, currentIndex + 1);
-        newHistory.push(newState);
-        setHistory(newHistory);
-        setCurrentIndex(newHistory.length - 1);
-    }, [history, currentIndex]);
+        setHistory((prevHistory) => {
+            const current = prevHistory[currentIndex];
+            if (newState === current) return prevHistory;
+            const nextHistory = prevHistory.slice(0, currentIndex + 1);
+            nextHistory.push(newState);
+            setCurrentIndex(nextHistory.length - 1);
+            return nextHistory;
+        });
+    }, [currentIndex]);
 
     const undo = useCallback(() => {
         if (currentIndex > 0) {

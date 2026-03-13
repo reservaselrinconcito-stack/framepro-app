@@ -1,1 +1,5 @@
-/* /index.html 200
+/demo /demo/index.html 200
+/demo/ /demo/index.html 200
+/demo/* /demo/index.html 200
+/download /download/index.html 200
+/download/ /download/index.html 200
